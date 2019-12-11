@@ -1,7 +1,8 @@
+import Factories.ShapeFactory;
+import Shapes.Shape;
 import eg.edu.alexu.csd.oop.game.GameEngine;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
