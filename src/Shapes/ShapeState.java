@@ -1,12 +1,12 @@
 package Shapes;
 
 public class ShapeState {
-    private int vX;
-    private int vY;
-    private int aY;
+    private double vX;
+    private double vY;
+    private double aY;
     private double a;
     private double b;
-    public ShapeState(int vX, int vY, double dragCoeffX, double dragCoeffY, int aY){
+    public ShapeState(double vX, double vY, double dragCoeffX, double dragCoeffY, double aY){
         this.vX = vX;
         this.vY = vY;
         this.aY = aY;
@@ -16,29 +16,27 @@ public class ShapeState {
     public void move(Shape s){
         int x = s.getX();
         int y = s.getY();
-        int newX = x + vX ;
-        int newY = y + vY ;
+        int newX = (int) Math.round(x + vX);
+        int newY = (int) Math.round(y + vY);
         if(newX+s.getWidth()/2 > s.getScreenWidth() || newX+s.getWidth()/2 < 0){
             reflect(newX+s.getWidth()/2 > s.getScreenWidth());
-            newX =  (x + vX);
-            newY = (y + vY);
+            newX =  (int)Math.round(x + vX);
+            newY = (int)Math.round(y + vY);
         }
         s.setX(newX);
         s.setY(newY);
         update();
     }
     public void update(){
-        if(Math.abs(vX) > 1) {
-            vX = (int) (vX * Math.exp(-a));
-        }
-        vY = (int)Math.round((aY - (aY - b*vY) * Math.exp(-b))/b);
+        vX = (vX * Math.exp(-a));
+        vY = (aY - (aY - b*vY) * Math.exp(-b))/b;
 
     }
     public void reflect(boolean right){
         if(vX > 0 && right) {
-            vX = (int) (-vX * 0.5);
+            vX = (-vX * 0.5);
         }else if( vX < 0 && !right){
-            vX = (int) (-vX * 0.5);
+            vX = (-vX * 0.5);
         }
     }
 }
