@@ -9,18 +9,18 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Struct;
 
-public class Constant implements GameObject {
+public class ImageObject implements GameObject {
     private BufferedImage[] images;
     private int x;
     private int y;
     private boolean visible;
     private int width;
     private int height;
-    public Constant(int x, int y,  String path, int width, int height){
+    public ImageObject(int x, int y, String path, int width, int height){
         this.x = x;
         this.y = y;
         try {
-            images = new BufferedImage[]{createResizedCopy(ImageIO.read(getClass().getResourceAsStream(path)), width, height, true)};
+            images = new BufferedImage[]{createResizedCopy(ImageIO.read(getClass().getClassLoader().getResourceAsStream(path)), width, height, false)};
         } catch (IOException e) {
             e.printStackTrace();
         }

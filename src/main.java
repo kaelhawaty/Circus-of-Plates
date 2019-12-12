@@ -21,10 +21,10 @@ public class main {
         menu.add(pauseMenuItem);
         menu.add(resumeMenuItem);
         menuBar.add(menu);
-        final GameEngine.GameController gameController = GameEngine.start("Very Simple Game in 99 Line of Code", new MyWorld(1800, 1000), menuBar, Color.BLACK);
+        final GameEngine.GameController gameController = GameEngine.start("Very Simple Game in 99 Line of Code", new MyWorld(1280, 800, 5, 10, 3, 5), menuBar);
         newMenuItem.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
-                gameController.changeWorld(new MyWorld(400, 700));
+                gameController.changeWorld(new MyWorld(1280, 800, 5, 10, 3, 5));
             }
         });
         pauseMenuItem.addActionListener(new ActionListener() {
