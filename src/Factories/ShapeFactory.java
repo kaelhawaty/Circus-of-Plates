@@ -2,10 +2,12 @@ package Factories;
 
 import Loader.ShapesLoader;
 import Shapes.Shape;
+import Shapes.ShapeState;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class ShapeFactory {
@@ -55,7 +57,7 @@ public class ShapeFactory {
      * @param count Number of Different Shapes
      * @return A random Shape Object
      */
-    public Shape getRandomShape(int count){
+    public Shape getRandomShape(int count, int posX, int posY, int screenWidth, int screenHeight, ShapeState state){
         if(count > loadedClass.size()){
             throw new RuntimeException("There is no enough classes for this Command");
         }
@@ -63,13 +65,16 @@ public class ShapeFactory {
         Shape sh = null;
         int idx = rand.nextInt(count);
         try{
-            sh = (Shape) loadedClass.get(idx).newInstance();
+            sh = (Shape) loadedClass.get(idx).getDeclaredConstructor(new Class[]{int.class, int.class, int.class, int.class, ShapeState.class}).newInstance(
+                    new Object[]{posX, posY, screenWidth, screenHeight, state });
 
         } catch (IllegalAccessException e) {
             System.out.println("Can't Access this class " + loadedClass.get(idx));
             e.printStackTrace();
-        } catch (InstantiationException e) {
+        } catch (InstantiationException | NoSuchMethodException e) {
             System.out.println("Can't Create an object of this class " + loadedClass.get(idx) );
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
         return sh;
@@ -85,6 +90,9 @@ public class ShapeFactory {
             throw new RuntimeException("Image doesn't exist");
         }
         return mp.get(name);
+    }
+    public int getSupportedShapesCount(){
+        return loadedClass.size();
     }
 
 
