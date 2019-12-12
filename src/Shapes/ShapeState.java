@@ -19,6 +19,9 @@ public class ShapeState {
     public double getVelocityY(){
         return vY;
     }
+    public double getAcceleration(){
+        return aY;
+    }
     public void setParameters( double dragCoeffX, double dragCoeffY, double aY){
         this.a = dragCoeffX;
         this.b = dragCoeffY;

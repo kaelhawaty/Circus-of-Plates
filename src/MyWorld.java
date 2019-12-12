@@ -61,14 +61,12 @@ public class MyWorld implements World {
 
         }
 
-
-
     }
     private void spawnShape(){
         boolean state = rand.nextDouble() > 0.5;
         Shape sh = ShapeFactory.getInstance().getRandomShape(diffShapes,
                 (state ? 0 : width),
-                (int) Math.round(0.1*height),
+                (int) Math.round(0.1*height)*(rand.nextInt(shelfLevel)+1),
                 width, height,
                 new ShapeState(getRandomDouble(state ? 3 : Math.min(-averageVelocity, -3), state ? Math.max(averageVelocity, 3) : -3), 0, 0, 0.0000000001, 0));
         sh.setY(sh.getY()-sh.getHeight());
@@ -83,6 +81,15 @@ public class MyWorld implements World {
     private boolean intersect(GameObject o1, GameObject o2){
         return (Math.abs((o1.getX()+o1.getWidth()/2) - (o2.getX()+o2.getWidth()/2)) <= o1.getWidth()) && (Math.abs((o1.getY()+o1.getHeight()/2) - (o2.getY()+o2.getHeight()/2)) <= o1.getHeight());
     }
+    private void changeState(Shape s){
+        int shelfNumber = Math.round(s.getY()+s.getHeight())/(int) Math.round(0.1 * height);
+        if(s.getState().getVelocityX() > 0 && s.getX()+s.getWidth()/2 > constant.get(shelfNumber).getX()+constant.get(shelfNumber).getWidth()){
+            s.getState().setParameters(0.01, 0.001, 0.2);
+        }
+        else if(s.getState().getVelocityX() < 0 && s.getX()+s.getWidth()/2 < constant.get(shelfNumber + shelfLevel).getX()){
+            s.getState().setParameters(0.01, 0.001, 0.2);
+        }
+    }
     @Override
     public boolean refresh() {
         boolean timeout = System.currentTimeMillis() - startTime > MAX_TIME; // time end and game over
@@ -90,11 +97,8 @@ public class MyWorld implements World {
         for(GameObject m : moving){
             Shape s = (Shape) m;
             s.move();
-            if(s.getState().getVelocityX() > 0 && s.getX()+s.getWidth()/2 > constant.get(1).getX()+constant.get(1).getWidth()){
-                s.getState().setParameters(0.01, 0.001, 0.2);
-            }
-            if(s.getState().getVelocityX() < 0 && s.getX()+s.getWidth()/2 < constant.get(2).getX()){
-                s.getState().setParameters(0.01, 0.001, 0.2);
+            if(Math.abs(s.getState().getAcceleration()) < 1e-9){
+                changeState(s);
             }
         }
         List<GameObject> toRemove = new ArrayList<>();
