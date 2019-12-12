@@ -26,30 +26,53 @@ public class MyWorld implements World {
     private long waveTime;
     private long lastWave;
     private Random rand = new Random();
+    private int shelfLevel;
 
-    public MyWorld(int screenWidth, int screenHeight, int activeCount, double averageVelocity, int diffShapes, int waveTime) {
+    public MyWorld(int screenWidth, int screenHeight, int activeCount, double averageVelocity, int diffShapes, int waveTime, int shelfLevel) {
         width = screenWidth;
         height = screenHeight;
         this.activeCount = activeCount;
         this.diffShapes = diffShapes;
         this.waveTime = waveTime*1000;
+        this.shelfLevel = shelfLevel;
         this.averageVelocity = averageVelocity;
         constant.add(new ImageObject(0 , 0, "Background.png", width, height));
-        constant.add(new ImageObject(0 , (int) Math.round(0.1*height), "rod.png", (int) Math.round(5/18.0*width), (int) Math.round(0.018*height)));
-        constant.add((new ImageObject((int) (screenWidth -Math.round(5/18.0*width)), (int) Math.round(0.1*height), "rod.png", (int) Math.round(5/18.0*width), (int) Math.round(0.018*height))));
+        initializeShelves();
         int spawnFirst = rand.nextInt(activeCount);
         this.activeCount-= spawnFirst;
         for(int i=0; i < spawnFirst; i++)
             spawnShape();
         lastWave = System.currentTimeMillis();
     }
+    private void initializeShelves() {
+        int w = (int) Math.round(5 / 18.0 * width);
+        int h = (int) Math.round(0.1 * height);
+        for (int i = 0; i < shelfLevel; i++){
+            constant.add(new ImageObject(0, h ,"rod.png", w, (int) Math.round(0.018 * height)));
+            w /= 2;
+            h += (int) Math.round(0.1 * height);
+        }
+        w = (int) Math.round(5 / 18.0 * width);
+        h = (int) Math.round(0.1 * height);
+        for(int i = 0; i < shelfLevel; i++){
+            constant.add((new ImageObject((int) (width - w), h, "rod.png", w, (int) Math.round(0.018 * height))));
+            w /= 2;
+            h += (int) Math.round(0.1 * height);
+
+        }
+
+
+
+    }
     private void spawnShape(){
         boolean state = rand.nextDouble() > 0.5;
-        moving.add(ShapeFactory.getInstance().getRandomShape(diffShapes,
+        Shape sh = ShapeFactory.getInstance().getRandomShape(diffShapes,
                 (state ? 0 : width),
-                400,
+                (int) Math.round(0.1*height),
                 width, height,
-                new ShapeState(getRandomDouble(state ? 3 : Math.min(-averageVelocity, -3), state ? Math.max(averageVelocity, 3) : -3), 0, 0, 0, 0)));
+                new ShapeState(getRandomDouble(state ? 3 : Math.min(-averageVelocity, -3), state ? Math.max(averageVelocity, 3) : -3), 0, 0, 0.0000000001, 0));
+        sh.setY(sh.getY()-sh.getHeight());
+        moving.add(sh);
 
     }
     private double getRandomDouble(double min, double max) {
@@ -67,6 +90,12 @@ public class MyWorld implements World {
         for(GameObject m : moving){
             Shape s = (Shape) m;
             s.move();
+            if(s.getState().getVelocityX() > 0 && s.getX()+s.getWidth()/2 > constant.get(1).getX()+constant.get(1).getWidth()){
+                s.getState().setParameters(0.01, 0.001, 0.2);
+            }
+            if(s.getState().getVelocityX() < 0 && s.getX()+s.getWidth()/2 < constant.get(2).getX()){
+                s.getState().setParameters(0.01, 0.001, 0.2);
+            }
         }
         List<GameObject> toRemove = new ArrayList<>();
         if(timeSinceLastWave > waveTime && activeCount > 0) {

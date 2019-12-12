@@ -13,6 +13,17 @@ public class ShapeState {
         a = dragCoeffX;
         b = dragCoeffY;
     }
+    public double getVelocityX(){
+        return vX;
+    }
+    public double getVelocityY(){
+        return vY;
+    }
+    public void setParameters( double dragCoeffX, double dragCoeffY, double aY){
+        this.a = dragCoeffX;
+        this.b = dragCoeffY;
+        this.aY = aY;
+    }
     public void move(Shape s){
         int x = s.getX();
         int y = s.getY();
