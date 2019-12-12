@@ -1,6 +1,7 @@
 package Loader;
 
 import Shapes.Shape;
+import Shapes.ShapeState;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -108,7 +109,7 @@ public class ShapesLoader {
                     if (!cls.isInterface()
                             && !Modifier.isAbstract(cls.getModifiers())
                             && Shape.class.isAssignableFrom(cls) && !st.contains(cls)
-                           /* && constructorAvailableTest((Class<? extends Shape>) cls)*/) {
+                            && constructorAvailableTest((Class<? extends Shape>) cls)) {
                         loadedClass.add((Class<? extends Shape>) cls);
                         st.add((Class<? extends Shape>) cls);
                         loadClassImages(jar, (Class<? extends Shape>) cls, className);
@@ -136,7 +137,7 @@ public class ShapesLoader {
     public boolean constructorAvailableTest(Class<? extends Shape> cls) {
 
         try {
-            Constructor<?> contructor = cls.getConstructor();
+            Constructor<?> contructor = cls.getConstructor(new Class[]{int.class, int.class, int.class, int.class, ShapeState.class});
         } catch (NoSuchMethodException nsme) {
             return false;
         }

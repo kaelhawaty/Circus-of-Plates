@@ -3,6 +3,7 @@ import Shapes.Shape;
 import eg.edu.alexu.csd.oop.game.GameEngine;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,20 +21,20 @@ public class main {
         menu.add(pauseMenuItem);
         menu.add(resumeMenuItem);
         menuBar.add(menu);
-        //final GameEngine.GameController gameController = GameEngine.start("Very Simple Game in 99 Line of Code", new eg.edu.alexu.csd.oop.game.sample.world.StarWar(400, 700), menuBar, Color.BLACK);
+        final GameEngine.GameController gameController = GameEngine.start("Very Simple Game in 99 Line of Code", new MyWorld(1280, 800, 5, 10, 3, 5, 3), menuBar);
         newMenuItem.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
-                //gameController.changeWorld(new eg.edu.alexu.csd.oop.game.sample.world.StarWar(400, 700));
+                gameController.changeWorld(new MyWorld(1280, 800, 5, 10, 3, 5, 3));
             }
         });
         pauseMenuItem.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
-                //gameController.pause();
+                gameController.pause();
             }
         });
         resumeMenuItem.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
-               // gameController.resume();
+               gameController.resume();
             }
         });
     }

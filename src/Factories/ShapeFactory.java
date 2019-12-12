@@ -2,11 +2,16 @@ package Factories;
 
 import Loader.ShapesLoader;
 import Shapes.Shape;
+import Shapes.ShapeState;
+import eg.edu.alexu.csd.oop.game.GameObject;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
+import java.util.List;
 
 public class ShapeFactory {
     private List<Class<? extends Shape>> loadedClass;
@@ -55,7 +60,7 @@ public class ShapeFactory {
      * @param count Number of Different Shapes
      * @return A random Shape Object
      */
-    public Shape getRandomShape(int count){
+    public Shape getRandomShape(int count, int posX, int posY, int screenWidth, int screenHeight, ShapeState state){
         if(count > loadedClass.size()){
             throw new RuntimeException("There is no enough classes for this Command");
         }
@@ -63,13 +68,16 @@ public class ShapeFactory {
         Shape sh = null;
         int idx = rand.nextInt(count);
         try{
-            sh = (Shape) loadedClass.get(idx).newInstance();
+            sh = (Shape) loadedClass.get(idx).getDeclaredConstructor(new Class[]{int.class, int.class, int.class, int.class, ShapeState.class}).newInstance(
+                    new Object[]{posX, posY, screenWidth, screenHeight, state });
 
         } catch (IllegalAccessException e) {
             System.out.println("Can't Access this class " + loadedClass.get(idx));
             e.printStackTrace();
-        } catch (InstantiationException e) {
+        } catch (InstantiationException | NoSuchMethodException e) {
             System.out.println("Can't Create an object of this class " + loadedClass.get(idx) );
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
         return sh;
@@ -85,6 +93,49 @@ public class ShapeFactory {
             throw new RuntimeException("Image doesn't exist");
         }
         return mp.get(name);
+    }
+    public boolean equalColor(GameObject a, GameObject b){
+        BufferedImage imageA = a.getSpriteImages()[0];
+        BufferedImage imageB = a.getSpriteImages()[0];
+        Color avgColorA = averageColor(imageA);
+        Color avgColorB = averageColor(imageB);
+        return similarTo(avgColorA, avgColorB);
+    }
+    private boolean similarTo(Color a, Color b){
+        double distance = (a.getRed() - b.getRed())*(a.getRed() - b.getRed()) + (a.getGreen() - b.getGreen())*(a.getGreen() - b.getGreen()) + (a.getBlue() - b.getBlue())*(a.getBlue() - b.getBlue());
+        if(distance < 10){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    private static Color averageColor(BufferedImage bi) {
+        long sumr = 0, sumg = 0, sumb = 0;
+        for (int x = 0; x < bi.getWidth(); x++) {
+            for (int y = 0; y < bi.getHeight(); y++) {
+                Color pixel = new Color(bi.getRGB(x,y));
+                if(isTransparent(bi, x, y))
+                    continue;
+                sumr += pixel.getRed();
+                sumg += pixel.getGreen();
+                sumb += pixel.getBlue();
+            }
+        }
+        int num = bi.getWidth() * bi.getHeight();
+        int avgr = (int) (sumr/ num);
+        int avgg = (int) (sumg/ num);
+        int avgb = (int) (sumb / num);
+        return new Color(avgr, avgg, avgb);
+    }
+    private static boolean isTransparent(BufferedImage bi, int x, int y) {
+        int pixel = bi.getRGB(x,y);
+        if( (pixel>>24) == 0x00 ) {
+            return true;
+        }
+        return false;
+    }
+    public int getSupportedShapesCount(){
+        return loadedClass.size();
     }
 
 
