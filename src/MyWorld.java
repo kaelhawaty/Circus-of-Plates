@@ -36,13 +36,6 @@ public class MyWorld implements World {
             Shape s = (Shape) m;
             s.move();
         }
-        for(GameObject m : moving){
-            for(GameObject k : moving){
-                if(ShapeFactory.getInstance().equalColor(m,k)){
-                    System.out.println("FUCK YEAH");
-                }
-            }
-        }
         return !timeout;
     }
     @Override public int getSpeed() 		{	return 30;	}
