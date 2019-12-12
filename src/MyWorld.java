@@ -23,6 +23,7 @@ public class MyWorld implements World {
         Random rand = new Random();
         for(int i=0; i < 10; i++)
             moving.add(ShapeFactory.getInstance().getRandomShape( 3,rand.nextInt(width) ,rand.nextInt((int) (0.1 *height)), screenWidth, screenHeight, new ShapeState(5.5, 0 , 0.001, 0.0001, 0.25)));
+        
     }
 
 
