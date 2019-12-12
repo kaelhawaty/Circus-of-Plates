@@ -97,4 +97,10 @@ public class Pot implements Shape {
     public int getScreenHeight() {
         return screenHeight;
     }
+    @Override
+    public void setRandomImage(){
+        Random rand = new Random();
+        int idx = rand.nextInt(5);
+        images = new BufferedImage[]{ShapeFactory.getInstance().getImage("Pot" + ((idx != 0) ? idx : "") + ".png" )};
+    }
 }

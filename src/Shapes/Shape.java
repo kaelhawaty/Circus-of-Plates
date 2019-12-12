@@ -9,4 +9,5 @@ public interface Shape  extends GameObject {
     public void setState(ShapeState state);
     public int getScreenWidth();
     public int getScreenHeight();
+    public void setRandomImage();
 }
