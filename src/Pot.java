@@ -20,7 +20,7 @@ public class Pot implements Shape {
         y = posY;
         this.state = state;
         Random rand = new Random();
-        int idx = rand.nextInt(3);
+        int idx = rand.nextInt(5);
         images = new BufferedImage[]{ShapeFactory.getInstance().getImage("Pot" + ((idx != 0) ? idx : "") + ".png" )};
         width = images[0].getWidth();
         height = images[0].getHeight();

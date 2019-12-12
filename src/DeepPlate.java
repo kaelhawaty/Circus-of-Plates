@@ -2,41 +2,28 @@ import Factories.ShapeFactory;
 import Shapes.Shape;
 import Shapes.ShapeState;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-public class Ball implements Shape {
+public class DeepPlate implements Shape {
     private BufferedImage[] images;
     private int x;
     private int y;
     private boolean visible = true;
-    public static final int SPRITE_WIDTH = 40;
+    private int width;
+    private int height;
     private ShapeState state;
     private int screenHeight;
     private int screenWidth;
-    public Ball(int posX, int posY, int screenWidth, int screenHeight, ShapeState state){
+    public DeepPlate(int posX, int posY, int screenWidth, int screenHeight,  ShapeState state){
         x = posX;
         y = posY;
         this.state = state;
         Random rand = new Random();
-        int idx = rand.nextInt(4);
-
-        images = new BufferedImage[]{new BufferedImage(SPRITE_WIDTH, SPRITE_WIDTH,	BufferedImage.TYPE_INT_ARGB)};
-        Graphics2D g2 = images[0].createGraphics();
-        g2.setColor(Color.RED);
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        double x = SPRITE_WIDTH/2;
-        double y = SPRITE_WIDTH/2;
-        int x1 = (int) ((SPRITE_WIDTH / 2.0) - x);
-        int y1 = (int) ((SPRITE_WIDTH / 2.0) - y);
-        int x2 = (int) ((SPRITE_WIDTH / 2.0) + x);
-        int y2 = (int) ((SPRITE_WIDTH / 2.0) + y);
-        g2.setStroke(new BasicStroke(3));
-        g2.fillOval(x1+3, y1+3, x2-6, y2-6);
-        g2.setColor(Color.WHITE);
-        g2.drawArc(x1+12, y1+8, x2-22, y2-22, 5, 80);
-        g2.dispose();
+        int idx = rand.nextInt(5);
+        images = new BufferedImage[]{ShapeFactory.getInstance().getImage("DeepPlate" + ((idx != 0) ? idx : "") + ".png" )};
+        width = images[0].getWidth();
+        height = images[0].getHeight();
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
     }
@@ -62,12 +49,12 @@ public class Ball implements Shape {
 
     @Override
     public int getWidth() {
-        return SPRITE_WIDTH;
+        return width;
     }
 
     @Override
     public int getHeight() {
-        return SPRITE_WIDTH;
+        return height;
     }
 
     @Override

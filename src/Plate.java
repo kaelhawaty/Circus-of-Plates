@@ -20,7 +20,7 @@ public class Plate implements Shape {
         y = posY;
         this.state = state;
         Random rand = new Random();
-        int idx = rand.nextInt(4);
+        int idx = rand.nextInt(5);
         images = new BufferedImage[]{ShapeFactory.getInstance().getImage("Plate" + ((idx != 0) ? idx : "") + ".png" )};
         width = images[0].getWidth();
         height = images[0].getHeight();
@@ -97,4 +97,5 @@ public class Plate implements Shape {
     public int getScreenHeight() {
         return screenHeight;
     }
+
 }
