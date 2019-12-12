@@ -35,13 +35,22 @@ public class MyWorld implements World {
         this.waveTime = waveTime*1000;
         this.averageVelocity = averageVelocity;
         constant.add(new ImageObject(0 , 0, "Background.png", width, height));
-        constant.add(new ImageObject(0 , 75, "rod.png", (int) Math.round(5/18.0*width), (int) Math.round(0.018*height)));
-        constant.add((new ImageObject((int) (screenWidth -Math.round(5/18.0*width)), 75, "rod.png", (int) Math.round(5/18.0*width), (int) Math.round(0.018*height))));
+        constant.add(new ImageObject(0 , (int) Math.round(0.1*height), "rod.png", (int) Math.round(5/18.0*width), (int) Math.round(0.018*height)));
+        constant.add((new ImageObject((int) (screenWidth -Math.round(5/18.0*width)), (int) Math.round(0.1*height), "rod.png", (int) Math.round(5/18.0*width), (int) Math.round(0.018*height))));
         int spawnFirst = rand.nextInt(activeCount);
         this.activeCount-= spawnFirst;
         for(int i=0; i < spawnFirst; i++)
-            moving.add(ShapeFactory.getInstance().getRandomShape( diffShapes,rand.nextInt(width) ,rand.nextInt((int) (0.1 *height)), screenWidth, screenHeight, new ShapeState(getRandomDouble(-averageVelocity, averageVelocity), 0 , 0.001, 0.0001, 0.25)));
+            spawnShape();
         lastWave = System.currentTimeMillis();
+    }
+    private void spawnShape(){
+        boolean state = rand.nextDouble() > 0.5;
+        moving.add(ShapeFactory.getInstance().getRandomShape(diffShapes,
+                (state ? 0 : width),
+                400,
+                width, height,
+                new ShapeState(getRandomDouble(state ? 3 : Math.min(-averageVelocity, -3), state ? Math.max(averageVelocity, 3) : -3), 0, 0, 0, 0)));
+
     }
     private double getRandomDouble(double min, double max) {
         Random r = new Random();
@@ -60,12 +69,11 @@ public class MyWorld implements World {
             s.move();
         }
         List<GameObject> toRemove = new ArrayList<>();
-        if(timeSinceLastWave > waveTime) {
-
+        if(timeSinceLastWave > waveTime && activeCount > 0) {
             int spawnFirst = Math.min(rand.nextInt(activeCount)+1,activeCount);
             activeCount -= spawnFirst;
             for (int i = 0; i < spawnFirst; i++)
-                moving.add(ShapeFactory.getInstance().getRandomShape(diffShapes, rand.nextInt(width), rand.nextInt((int) (0.1 * height)), width, height, new ShapeState(getRandomDouble(-averageVelocity, averageVelocity), 0, 0.001, 0.0001, 0.25)));
+                spawnShape();
             lastWave = System.currentTimeMillis();
         }
         for (GameObject m : moving) {
