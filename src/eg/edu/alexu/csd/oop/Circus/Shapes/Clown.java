@@ -8,70 +8,97 @@ import eg.edu.alexu.csd.oop.game.World;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.LinkedList;
 import java.util.Stack;
 
 public class Clown extends ImageObject {
-    Stack<GameObject> left;
-    Stack<GameObject> right;
+    LinkedList<GameObject> left;
+    LinkedList<GameObject> right;
     World myWorld;
     ImageObject stickLeft;
     ImageObject stickRight;
     public Clown(int x, int y, String path, int width, int height, World myWorld) {
         super(x, y, path, width, height);
+        left = new LinkedList<>();
+        right = new LinkedList<>();
         this.myWorld = myWorld;
-        stickLeft = new ImageObject(x-(int) Math.round(0.43*width), (int) (y - Math.round(0.20*height)), "LeftStick.png",(int) Math.round(0.5*width),(int) Math.round(0.5*height)){
-            @Override
-            public void setY(int y){
-
-            }
-            @Override
-            public void setX(int x){
-                this.x = x;
-            }
-        };
-        myWorld.getControlableObjects().add(stickLeft);
-        stickRight = new ImageObject(x+images[0].getWidth(), (int) (y+Math.round(0.25*images[0].getHeight())), "RightStick.png",(int) Math.round(0.5*width),(int) Math.round(0.5*height));
-        myWorld.getControlableObjects().add(stickRight);
+        stickLeft = new ImageObject(x-(int) Math.round(0.43*width), (int) (y - Math.round(0.20*height)), "LeftStick.png",(int) Math.round(0.5*width),(int) Math.round(0.5*height));
+        stickRight = new ImageObject(x+(int) Math.round(0.92*width), (int) (y-Math.round(0.20*height)), "RightStick.png",(int) Math.round(0.5*width),(int) Math.round(0.5*height));
+        myWorld.getConstantObjects().add(stickLeft);
+        myWorld.getConstantObjects().add(stickRight);
     }
-    public void checkIntersectAndAdd(GameObject Shape){
-
-
-
-    }
-    public void addShape(GameObject shape){
-        if (left.size() > 2 && checkTop(0, shape, left)){
-            left.pop();
-            left.pop();
+    public boolean checkIntersectAndAdd(GameObject shape){
+        int midX = shape.getX()+shape.getWidth()/2;
+        int y = shape.getY()+ shape.getHeight();
+        if(left.isEmpty()){
+            //System.out.println("stickLeft X: " + stickLeft.getX() + " midX " + midX + " stickLeft x2: " + (stickLeft.getX()+stickLeft.getWidth()/2) );
+           // System.out.println(Math.abs(stickLeft.getY() - y));
+            if(stickLeft.getX() <= midX && midX <= (stickLeft.getX()+stickLeft.getWidth()/2) && Math.abs(stickLeft.getY() - y) < 15){
+                shape.setY(stickLeft.getY()-shape.getHeight());
+                return addShape(shape, left);
+            }
         }else{
-            left.add(shape);
+            GameObject top = left.peekLast();
+            if(top.getX() <= midX && midX <= (top.getX()+top.getWidth()) && Math.abs(top.getY() - y) < 15){
+                shape.setY(top.getY()-shape.getHeight());
+                return addShape(shape, left);
+            }
         }
-    }
-    public void removeShape(GameObject shape){
-        myWorld.getControlableObjects().remove(shape);
-        //objectpool.release(shape)
-    }
-
-    private boolean checkTop(int n, GameObject shape, Stack<GameObject> stk){
-        if (n == 2)
-            return true;
-        GameObject p = stk.pop();
-        if (ShapeFactory.getInstance().equalColor(p, shape)) {
-            boolean flag = checkTop(n+1, shape, stk);
-            stk.add(p);
-            return flag;
+        if(right.isEmpty()){
+            if((stickRight.getX()+stickRight.getWidth()/2) <= midX && midX <= (stickRight.getX()+stickRight.getWidth()) && Math.abs(stickRight.getY() - y) < 15){
+                shape.setY(stickRight.getY()-shape.getHeight());
+                return addShape(shape, right);
+            }
+        }else{
+            GameObject top = right.peekLast();
+            if(top.getX() <= midX && midX <= (top.getX()+top.getWidth()) && Math.abs(top.getY() - y) < 15){
+                shape.setY(top.getY()-shape.getHeight());
+                return addShape(shape, right);
+            }
         }
         return false;
     }
+    public boolean addShape(GameObject shape, LinkedList<GameObject> stk){
+        if (stk.size() >= 2 && checkTop(0, shape, stk)){
+            myWorld.getConstantObjects().remove(stk.pop());
+            myWorld.getConstantObjects().remove(stk.pop());
+            return true;
+        }else{
+            stk.add(shape);
+            myWorld.getConstantObjects().add(shape);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkTop(int n, GameObject shape, LinkedList<GameObject> stk){
+        if (n == 2)
+            return true;
+        GameObject p = stk.removeLast();
+        boolean flag = false;
+        if (ShapeFactory.getInstance().equalColor(p, shape)) {
+            flag = checkTop(n+1, shape, stk);
+        }
+        stk.add(p);
+        return flag;
+    }
     @Override
     public void setX(int x){
+        int vec = x-this.x;
         if(stickLeft.getX()+(x-this.x) <= 0 ){
-            this.x -= stickLeft.getX();
-            return;
+            vec = (-stickLeft.getX());
+        }else if(stickRight.getX()+stickRight.getWidth()+(x-this.x) >= myWorld.getWidth()){
+            vec = myWorld.getWidth()-(stickRight.getX()+stickRight.getWidth());
         }
-        if(stickRight.getX() == myWorld.getWidth()){
-            return;
+        stickLeft.setX(stickLeft.getX()+vec);
+        stickRight.setX(stickRight.getX()+vec);
+        for(GameObject o : right){
+            o.setX(o.getX()+vec);
         }
-        this.x = x;
+        for(GameObject o : left){
+            o.setX(o.getX()+vec);
+        }
+        this.x += vec;
     }
     @Override
     public void setY(int Y){

@@ -96,14 +96,14 @@ public class ShapeFactory {
     }
     public boolean equalColor(GameObject a, GameObject b){
         BufferedImage imageA = a.getSpriteImages()[0];
-        BufferedImage imageB = a.getSpriteImages()[0];
+        BufferedImage imageB = b.getSpriteImages()[0];
         Color avgColorA = averageColor(imageA);
         Color avgColorB = averageColor(imageB);
         return similarTo(avgColorA, avgColorB);
     }
     private boolean similarTo(Color a, Color b){
         double distance = (a.getRed() - b.getRed())*(a.getRed() - b.getRed()) + (a.getGreen() - b.getGreen())*(a.getGreen() - b.getGreen()) + (a.getBlue() - b.getBlue())*(a.getBlue() - b.getBlue());
-        if(distance < 10){
+        if(distance < 700){
             return true;
         }else{
             return false;

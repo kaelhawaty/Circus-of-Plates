@@ -44,8 +44,7 @@ public class MyWorld implements World {
         this.averageVelocity = averageVelocity;
         constant.add(new ImageObject(0 , 0, "Background.png", width, height));
         initializeShelves();
-        Clown cl = new Clown(width, height- (int) Math.round(height*0.25) , "clown.png",(int) Math.round(width*0.10), (int) Math.round(height*0.23), this);
-        control.add(cl);
+        control.add(new Clown(width/2, height- (int) Math.round(height*0.25) , "clown.png",(int) Math.round(width*0.10), (int) Math.round(height*0.23), this));
         int spawnFirst = rand.nextInt(activeCount);
         this.activeCount-= spawnFirst;
         for(int i=0; i < spawnFirst; i++)
@@ -101,15 +100,22 @@ public class MyWorld implements World {
     public boolean refresh() {
         boolean timeout = System.currentTimeMillis() - startTime > MAX_TIME; // time end and game over
         long timeSinceLastWave = System.currentTimeMillis() - lastWave;
+        List<GameObject> toRemove = new ArrayList<>();
         for(GameObject m : moving){
             Shape s = (Shape) m;
             s.move();
             if(Math.abs(s.getState().getAcceleration()) < 1e-9){
                 changeState(s);
             }
+            for(GameObject t: control){
+                Clown clown = (Clown) t;
+                if( clown.checkIntersectAndAdd(m)){
+                    toRemove.add(m);
+                }
+
+            }
         }
 
-        List<GameObject> toRemove = new ArrayList<>();
         if(timeSinceLastWave > waveTime && activeCount > 0) {
             int spawnFirst = Math.min(rand.nextInt(activeCount)+1,activeCount);
             activeCount -= spawnFirst;
@@ -129,7 +135,7 @@ public class MyWorld implements World {
         }
         return !timeout;
     }
-    @Override public int getSpeed() 		{	return 10;	}
+    @Override public int getSpeed() 		{	return 20;	}
     @Override public int getControlSpeed() 	{	return 20;	}
     @Override public List<GameObject> getConstantObjects() 	{	return constant;	}
     @Override public List<GameObject> getMovableObjects() 	{	return moving;		}
