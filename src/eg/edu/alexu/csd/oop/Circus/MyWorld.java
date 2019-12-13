@@ -41,7 +41,7 @@ public class MyWorld implements World {
         this.shelfLevel = shelfLevel;
         this.averageVelocity = averageVelocity;
         this.clowns = clowns;
-        constant.add(new ImageObject(0 , 0, "Background.png", width, height));
+        constant.add(new ImageObject(0 , 0, "Background.jpg", width, height));
         score = new Score();
         initializeShelves();
         initializeClowns();
