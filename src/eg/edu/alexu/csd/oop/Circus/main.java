@@ -1,5 +1,5 @@
-import Factories.ShapeFactory;
-import Shapes.Shape;
+package eg.edu.alexu.csd.oop.Circus;
+
 import eg.edu.alexu.csd.oop.game.GameEngine;
 
 import javax.swing.*;

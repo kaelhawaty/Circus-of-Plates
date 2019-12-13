@@ -1,6 +1,6 @@
-import Factories.ShapeFactory;
-import Shapes.Shape;
-import Shapes.ShapeState;
+import eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory;
+import eg.edu.alexu.csd.oop.Circus.Shapes.Shape;
+import eg.edu.alexu.csd.oop.Circus.Shapes.ShapeState;
 
 import java.awt.image.BufferedImage;
 import java.util.Random;

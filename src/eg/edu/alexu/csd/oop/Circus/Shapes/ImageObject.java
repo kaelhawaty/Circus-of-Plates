@@ -1,21 +1,19 @@
-package Shapes;
+package eg.edu.alexu.csd.oop.Circus.Shapes;
 
 import eg.edu.alexu.csd.oop.game.GameObject;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.sql.Struct;
 
 public class ImageObject implements GameObject {
-    private BufferedImage[] images;
-    private int x;
-    private int y;
-    private boolean visible;
-    private int width;
-    private int height;
+    protected BufferedImage[] images;
+    protected int x;
+    protected int y;
+    protected boolean visible;
+    protected int width;
+    protected int height;
     public ImageObject(int x, int y, String path, int width, int height){
         this.x = x;
         this.y = y;

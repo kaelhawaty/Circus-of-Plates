@@ -1,12 +1,13 @@
-import Factories.ShapeFactory;
-import Shapes.Clown;
-import Shapes.ImageObject;
-import Shapes.Shape;
-import Shapes.ShapeState;
+package eg.edu.alexu.csd.oop.Circus;
+
+import eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory;
+import eg.edu.alexu.csd.oop.Circus.Shapes.Clown;
+import eg.edu.alexu.csd.oop.Circus.Shapes.ImageObject;
+import eg.edu.alexu.csd.oop.Circus.Shapes.Shape;
+import eg.edu.alexu.csd.oop.Circus.Shapes.ShapeState;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,7 +44,8 @@ public class MyWorld implements World {
         this.averageVelocity = averageVelocity;
         constant.add(new ImageObject(0 , 0, "Background.png", width, height));
         initializeShelves();
-        initializeSticks();
+        Clown cl = new Clown(width, height- (int) Math.round(height*0.25) , "clown.png",(int) Math.round(width*0.10), (int) Math.round(height*0.23), this);
+        control.add(cl);
         int spawnFirst = rand.nextInt(activeCount);
         this.activeCount-= spawnFirst;
         for(int i=0; i < spawnFirst; i++)
@@ -66,12 +68,6 @@ public class MyWorld implements World {
             h += (int) Math.round(distBetwnRod * height);
 
         }
-    }
-    private void initializeSticks() {
-        for (int i = 0; i <2; i++){
-            control.add(new Clown(750-i*250, 250,"rod2.png", 15,300));
-        }
-        control.add(new Clown(500,490,"clown.png",265,200));
     }
     private void spawnShape(){
         boolean state = rand.nextDouble() > 0.5;
