@@ -1,7 +1,7 @@
-package Loader;
+package eg.edu.alexu.csd.oop.Circus.Loader;
 
-import Shapes.Shape;
-import Shapes.ShapeState;
+import eg.edu.alexu.csd.oop.Circus.Shapes.Shape;
+import eg.edu.alexu.csd.oop.Circus.Shapes.ShapeState;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

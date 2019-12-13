@@ -1,8 +1,8 @@
-package Factories;
+package eg.edu.alexu.csd.oop.Circus.Factories;
 
-import Loader.ShapesLoader;
-import Shapes.Shape;
-import Shapes.ShapeState;
+import eg.edu.alexu.csd.oop.Circus.Loader.ShapesLoader;
+import eg.edu.alexu.csd.oop.Circus.Shapes.Shape;
+import eg.edu.alexu.csd.oop.Circus.Shapes.ShapeState;
 import eg.edu.alexu.csd.oop.game.GameObject;
 
 import java.awt.*;
@@ -57,7 +57,7 @@ public class ShapeFactory {
     /**
      * Returns a Random Shape Object with indexes between 0 and count-1
      * Note: Currently it uses default constructor (Empty)
-     * @param count Number of Different Shapes
+     * @param count Number of Different eg.edu.alexu.csd.oop.Circus.Shapes
      * @return A random Shape Object
      */
     public Shape getRandomShape(int count, int posX, int posY, int screenWidth, int screenHeight, ShapeState state){
@@ -96,14 +96,14 @@ public class ShapeFactory {
     }
     public boolean equalColor(GameObject a, GameObject b){
         BufferedImage imageA = a.getSpriteImages()[0];
-        BufferedImage imageB = a.getSpriteImages()[0];
+        BufferedImage imageB = b.getSpriteImages()[0];
         Color avgColorA = averageColor(imageA);
         Color avgColorB = averageColor(imageB);
         return similarTo(avgColorA, avgColorB);
     }
     private boolean similarTo(Color a, Color b){
         double distance = (a.getRed() - b.getRed())*(a.getRed() - b.getRed()) + (a.getGreen() - b.getGreen())*(a.getGreen() - b.getGreen()) + (a.getBlue() - b.getBlue())*(a.getBlue() - b.getBlue());
-        if(distance < 10){
+        if(distance < 700){
             return true;
         }else{
             return false;
