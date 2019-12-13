@@ -102,6 +102,7 @@ public class MyWorld implements World {
             for(Clown t: ((ClownWrapper)control.get(0)).getClowns()){
                     if (t.checkIntersectAndAdd(m)) {
                         toRemove.add(m);
+
                     }
 
             }
@@ -116,15 +117,17 @@ public class MyWorld implements World {
         for (GameObject m : moving) {
             if (m.getY() > height) {
                 toRemove.add(m);
-                m = null;
+                objectPool.releaseShape((Shape) m);
                 activeCount++;
             }
         }
         for(GameObject m :toRemove){
             moving.remove(m);
-            objectPool.releaseShape((Shape) m);
         }
         return !timeout;
+    }
+    public ObjectPool getObjectPool(){
+        return objectPool;
     }
     @Override public int getSpeed() 		{	return 20;	}
     @Override public int getControlSpeed() 	{	return 20;	}

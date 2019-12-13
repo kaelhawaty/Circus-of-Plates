@@ -2,6 +2,7 @@ package eg.edu.alexu.csd.oop.Circus.Shapes;
 
 
 import eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory;
+import eg.edu.alexu.csd.oop.Circus.MyWorld;
 import eg.edu.alexu.csd.oop.Circus.Observer.DelegatedObserver;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
@@ -14,11 +15,11 @@ import java.util.Observer;
 public class Clown extends ImageObject {
     LinkedList<GameObject> left;
     LinkedList<GameObject> right;
-    World myWorld;
+    MyWorld myWorld;
     ImageObject stickLeft;
     ImageObject stickRight;
     private DelegatedObserver obs = new DelegatedObserver();
-    public Clown(int x, int y, String path, int width, int height, World myWorld) {
+    public Clown(int x, int y, String path, int width, int height, MyWorld myWorld) {
         super(x, y, path, width, height);
         left = new LinkedList<>();
         right = new LinkedList<>();
@@ -59,8 +60,12 @@ public class Clown extends ImageObject {
     }
     public boolean addShape(GameObject shape, LinkedList<GameObject> stk){
         if (stk.size() >= 2 && checkTop(0, shape, stk)){
-            myWorld.getConstantObjects().remove(stk.removeLast());
-            myWorld.getConstantObjects().remove(stk.removeLast());
+            Shape sh1 = (Shape) stk.removeLast();
+            Shape sh2 = (Shape) stk.removeLast();
+            myWorld.getObjectPool().releaseShape(sh1);
+            myWorld.getObjectPool().releaseShape(sh2);
+            myWorld.getConstantObjects().remove(sh1);
+            myWorld.getConstantObjects().remove(sh2);
             obs.setChanged();
             obs.notifyObservers();
         }else{

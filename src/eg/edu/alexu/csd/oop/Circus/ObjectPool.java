@@ -40,7 +40,14 @@ public class ObjectPool {
                 if (now - entry.getValue() > deadTime) {
                     available.remove(entry);
                 } else {
+                    boolean state = rand.nextDouble() > 0.5;
                     Shape shape = entry.getKey();
+                    shape.setX((state ? 0 : width));
+                    shape.setY((int) Math.round(distanceBetweenRods * height) * (rand.nextInt(shelfLevel) + 1));
+                    shape.setState(new ShapeState(getRandomDouble(state ? 3 : Math.min(-averageVelocity, -3), state ? Math.max(averageVelocity, 3) : -3), 0, 0, 0.0000000001, 0));
+                    shape.setY(shape.getY() - shape.getHeight());
+                    shape.setRandomImage();
+                    available.remove(shape);
                     inUse.put(shape, now);
                     return shape;
                 }
