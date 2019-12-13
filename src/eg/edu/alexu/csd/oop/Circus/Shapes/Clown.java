@@ -62,13 +62,11 @@ public class Clown extends ImageObject {
         if (stk.size() >= 2 && checkTop(0, shape, stk)){
             myWorld.getConstantObjects().remove(stk.pop());
             myWorld.getConstantObjects().remove(stk.pop());
-            return true;
         }else{
             stk.add(shape);
             myWorld.getConstantObjects().add(shape);
-            return true;
         }
-        return false;
+        return true;
     }
 
     private boolean checkTop(int n, GameObject shape, LinkedList<GameObject> stk){

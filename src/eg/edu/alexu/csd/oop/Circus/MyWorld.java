@@ -1,10 +1,8 @@
 package eg.edu.alexu.csd.oop.Circus;
 
-import eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory;
 import eg.edu.alexu.csd.oop.Circus.Shapes.Clown;
 import eg.edu.alexu.csd.oop.Circus.Shapes.ImageObject;
 import eg.edu.alexu.csd.oop.Circus.Shapes.Shape;
-import eg.edu.alexu.csd.oop.Circus.Shapes.ShapeState;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
@@ -22,9 +20,8 @@ public class MyWorld implements World {
     private final List<GameObject> constant = new LinkedList<GameObject>();
     private final List<GameObject> moving = new LinkedList<GameObject>();
     private final List<GameObject> control = new LinkedList<GameObject>();
+    private ObjectPool objectPool;
     private int activeCount;
-    private double averageVelocity;
-    private int diffShapes;
     private long waveTime;
     private long lastWave;
     private Random rand = new Random();
@@ -33,22 +30,21 @@ public class MyWorld implements World {
     private final double scaleHeightRod = 0.009;
     private final double scaleWidthRod = 5/18.0;
     private final double scaleBtnRods = 2;
-
+    private final long deadTime = 10*1000;
     public MyWorld(int screenWidth, int screenHeight, int activeCount, double averageVelocity, int diffShapes, int waveTime, int shelfLevel) {
         width = screenWidth;
         height = screenHeight;
         this.activeCount = activeCount;
-        this.diffShapes = diffShapes;
         this.waveTime = waveTime*1000;
         this.shelfLevel = shelfLevel;
-        this.averageVelocity = averageVelocity;
+        objectPool = new ObjectPool(deadTime, width, height, averageVelocity, diffShapes, shelfLevel, distBetwnRod);
         constant.add(new ImageObject(0 , 0, "Background.png", width, height));
         initializeShelves();
         control.add(new Clown(width/2, height- (int) Math.round(height*0.25) , "clown.png",(int) Math.round(width*0.10), (int) Math.round(height*0.23), this));
         int spawnFirst = rand.nextInt(activeCount);
         this.activeCount-= spawnFirst;
         for(int i=0; i < spawnFirst; i++)
-            spawnShape();
+            moving.add(objectPool.getShape());
         lastWave = System.currentTimeMillis();
     }
     private void initializeShelves() {
@@ -67,25 +63,6 @@ public class MyWorld implements World {
             h += (int) Math.round(distBetwnRod * height);
 
         }
-    }
-    private void spawnShape(){
-        boolean state = rand.nextDouble() > 0.5;
-        Shape sh = ShapeFactory.getInstance().getRandomShape(diffShapes,
-                (state ? 0 : width),
-                (int) Math.round(distBetwnRod*height)*(rand.nextInt(shelfLevel)+1),
-                width, height,
-                new ShapeState(getRandomDouble(state ? 3 : Math.min(-averageVelocity, -3), state ? Math.max(averageVelocity, 3) : -3), 0, 0, 0.0000000001, 0));
-        sh.setY(sh.getY()-sh.getHeight());
-        moving.add(sh);
-
-    }
-    private double getRandomDouble(double min, double max) {
-        Random r = new Random();
-        double randomValue = min + (max - min) * r.nextDouble();
-        return randomValue;
-    }
-    private boolean intersect(GameObject o1, GameObject o2){
-        return (Math.abs((o1.getX()+o1.getWidth()/2) - (o2.getX()+o2.getWidth()/2)) <= o1.getWidth()) && (Math.abs((o1.getY()+o1.getHeight()/2) - (o2.getY()+o2.getHeight()/2)) <= o1.getHeight());
     }
     private void changeState(Shape s){
         int shelfNumber = Math.round(s.getY()+s.getHeight())/(int) Math.round(distBetwnRod * height);
@@ -111,16 +88,15 @@ public class MyWorld implements World {
                 Clown clown = (Clown) t;
                 if( clown.checkIntersectAndAdd(m)){
                     toRemove.add(m);
+                    objectPool.releaseShape((Shape) m);
                 }
-
             }
         }
-
         if(timeSinceLastWave > waveTime && activeCount > 0) {
             int spawnFirst = Math.min(rand.nextInt(activeCount)+1,activeCount);
             activeCount -= spawnFirst;
             for (int i = 0; i < spawnFirst; i++)
-                spawnShape();
+                moving.add(objectPool.getShape());
             lastWave = System.currentTimeMillis();
         }
         for (GameObject m : moving) {
@@ -132,6 +108,7 @@ public class MyWorld implements World {
         }
         for(GameObject m :toRemove){
             moving.remove(m);
+            objectPool.releaseShape((Shape) m);
         }
         return !timeout;
     }
