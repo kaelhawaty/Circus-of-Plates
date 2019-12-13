@@ -2,14 +2,14 @@ package eg.edu.alexu.csd.oop.Circus.Shapes;
 
 
 import eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory;
+import eg.edu.alexu.csd.oop.Circus.Observer.DelegatedObserver;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.LinkedList;
-import java.util.Stack;
+import java.util.Observable;
+import java.util.Observer;
+
 
 public class Clown extends ImageObject {
     LinkedList<GameObject> left;
@@ -17,6 +17,7 @@ public class Clown extends ImageObject {
     World myWorld;
     ImageObject stickLeft;
     ImageObject stickRight;
+    private DelegatedObserver obs = new DelegatedObserver();
     public Clown(int x, int y, String path, int width, int height, World myWorld) {
         super(x, y, path, width, height);
         left = new LinkedList<>();
@@ -31,8 +32,6 @@ public class Clown extends ImageObject {
         int midX = shape.getX()+shape.getWidth()/2;
         int y = shape.getY()+ shape.getHeight();
         if(left.isEmpty()){
-            //System.out.println("stickLeft X: " + stickLeft.getX() + " midX " + midX + " stickLeft x2: " + (stickLeft.getX()+stickLeft.getWidth()/2) );
-           // System.out.println(Math.abs(stickLeft.getY() - y));
             if(stickLeft.getX() <= midX && midX <= (stickLeft.getX()+stickLeft.getWidth()/2) && Math.abs(stickLeft.getY() - y) < 15){
                 shape.setY(stickLeft.getY()-shape.getHeight());
                 return addShape(shape, left);
@@ -60,8 +59,10 @@ public class Clown extends ImageObject {
     }
     public boolean addShape(GameObject shape, LinkedList<GameObject> stk){
         if (stk.size() >= 2 && checkTop(0, shape, stk)){
-            myWorld.getConstantObjects().remove(stk.pop());
-            myWorld.getConstantObjects().remove(stk.pop());
+            myWorld.getConstantObjects().remove(stk.removeLast());
+            myWorld.getConstantObjects().remove(stk.removeLast());
+            obs.setChanged();
+            obs.notifyObservers();
         }else{
             stk.add(shape);
             myWorld.getConstantObjects().add(shape);
@@ -101,5 +102,20 @@ public class Clown extends ImageObject {
     @Override
     public void setY(int Y){
         return;
+    }
+
+    public int getMaxLeft(){
+        return stickLeft.getX();
+    }
+    public int getMaxRight(){
+        return (stickRight.getX()+stickRight.getWidth());
+    }
+
+    public void addObserver(Observer ob) {
+        obs.addObserver(ob);
+    }
+
+    public void removeObserver(Observer ob) {
+        obs.deleteObserver(ob);
     }
 }

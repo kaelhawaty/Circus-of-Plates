@@ -1,10 +1,7 @@
 package eg.edu.alexu.csd.oop.Circus;
 
 import eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory;
-import eg.edu.alexu.csd.oop.Circus.Shapes.Clown;
-import eg.edu.alexu.csd.oop.Circus.Shapes.ImageObject;
-import eg.edu.alexu.csd.oop.Circus.Shapes.Shape;
-import eg.edu.alexu.csd.oop.Circus.Shapes.ShapeState;
+import eg.edu.alexu.csd.oop.Circus.Shapes.*;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
@@ -15,7 +12,7 @@ import java.util.Random;
 
 public class MyWorld implements World {
     private static int MAX_TIME = 100 * 60 * 1000;	// 1 minute
-    private int score = 0;
+    private Score score;
     private long startTime = System.currentTimeMillis();
     private final int width;
     private final int height;
@@ -33,8 +30,9 @@ public class MyWorld implements World {
     private final double scaleHeightRod = 0.009;
     private final double scaleWidthRod = 5/18.0;
     private final double scaleBtnRods = 2;
+    private int clowns;
 
-    public MyWorld(int screenWidth, int screenHeight, int activeCount, double averageVelocity, int diffShapes, int waveTime, int shelfLevel) {
+    public MyWorld(int screenWidth, int screenHeight, int activeCount, double averageVelocity, int diffShapes, int waveTime, int shelfLevel, int clowns) {
         width = screenWidth;
         height = screenHeight;
         this.activeCount = activeCount;
@@ -42,14 +40,26 @@ public class MyWorld implements World {
         this.waveTime = waveTime*1000;
         this.shelfLevel = shelfLevel;
         this.averageVelocity = averageVelocity;
+        this.clowns = clowns;
         constant.add(new ImageObject(0 , 0, "Background.png", width, height));
+        score = new Score();
         initializeShelves();
-        control.add(new Clown(width/2, height- (int) Math.round(height*0.25) , "clown.png",(int) Math.round(width*0.10), (int) Math.round(height*0.23), this));
+        initializeClowns();
         int spawnFirst = rand.nextInt(activeCount);
         this.activeCount-= spawnFirst;
         for(int i=0; i < spawnFirst; i++)
             spawnShape();
         lastWave = System.currentTimeMillis();
+    }
+    private void initializeClowns(){
+        ClownWrapper cw = new ClownWrapper(width);
+        for(int i = 0; i < clowns; i++) {
+            Clown cl = new Clown((int) Math.round(1.0 * (i+1) / (clowns+1) *width)-(int) Math.round(width * 0.10)/2, height - (int) Math.round(height * 0.25), "clown.png", (int) Math.round(width * 0.10), (int) Math.round(height * 0.23), this);
+            cl.addObserver(score);
+            constant.add(cl);
+            cw.addClown(cl);
+        }
+        control.add(cw);
     }
     private void initializeShelves() {
         int w = (int) Math.round(scaleWidthRod * width);
@@ -107,12 +117,10 @@ public class MyWorld implements World {
             if(Math.abs(s.getState().getAcceleration()) < 1e-9){
                 changeState(s);
             }
-            for(GameObject t: control){
-                Clown clown = (Clown) t;
-                if( clown.checkIntersectAndAdd(m)){
-                    toRemove.add(m);
-                }
-
+            for(Clown t: ((ClownWrapper)control.get(0)).getClowns()){
+                    if (t.checkIntersectAndAdd(m)) {
+                        toRemove.add(m);
+                    }
             }
         }
 
@@ -144,6 +152,6 @@ public class MyWorld implements World {
     @Override public int getHeight() { return height; }
     @Override
     public String getStatus() {
-        return "Score=" + score + "   |   Time=" + Math.max(0, (MAX_TIME - (System.currentTimeMillis()-startTime))/1000);	// update status
+        return "Score=" + score.getScore() + "   |   Time=" + Math.max(0, (MAX_TIME - (System.currentTimeMillis()-startTime))/1000);	// update status
     }
 }
