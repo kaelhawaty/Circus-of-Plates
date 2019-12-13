@@ -67,9 +67,12 @@ public class ImageObject implements GameObject {
     public BufferedImage[] getSpriteImages() {
         return images;
     }
-    private BufferedImage createResizedCopy(Image originalImage,
-                                            int scaledWidth, int scaledHeight,
-                                            boolean preserveAlpha)
+    public void setSpriteImages(BufferedImage[] newImages){
+        images = newImages;
+    }
+    protected BufferedImage createResizedCopy(Image originalImage,
+                                    int scaledWidth, int scaledHeight,
+                                    boolean preserveAlpha)
     {
         int imageType = preserveAlpha ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
         BufferedImage scaledBI = new BufferedImage(scaledWidth, scaledHeight, imageType);

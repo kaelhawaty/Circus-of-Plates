@@ -1,4 +1,5 @@
 import Factories.ShapeFactory;
+import Shapes.Clown;
 import Shapes.ImageObject;
 import Shapes.Shape;
 import Shapes.ShapeState;
@@ -38,6 +39,7 @@ public class MyWorld implements World {
         this.averageVelocity = averageVelocity;
         constant.add(new ImageObject(0 , 0, "Background.png", width, height));
         initializeShelves();
+        control.add(new Clown(width/2, height-450,"clown.png", 150, 450));
         int spawnFirst = rand.nextInt(activeCount);
         this.activeCount-= spawnFirst;
         for(int i=0; i < spawnFirst; i++)
@@ -101,6 +103,7 @@ public class MyWorld implements World {
                 changeState(s);
             }
         }
+
         List<GameObject> toRemove = new ArrayList<>();
         if(timeSinceLastWave > waveTime && activeCount > 0) {
             int spawnFirst = Math.min(rand.nextInt(activeCount)+1,activeCount);
@@ -121,7 +124,7 @@ public class MyWorld implements World {
         }
         return !timeout;
     }
-    @Override public int getSpeed() 		{	return 30;	}
+    @Override public int getSpeed() 		{	return 10;	}
     @Override public int getControlSpeed() 	{	return 20;	}
     @Override public List<GameObject> getConstantObjects() 	{	return constant;	}
     @Override public List<GameObject> getMovableObjects() 	{	return moving;		}

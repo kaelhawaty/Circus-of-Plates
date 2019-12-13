@@ -24,7 +24,7 @@ public class main {
         final GameEngine.GameController gameController = GameEngine.start("Very Simple Game in 99 Line of Code", new MyWorld(1280, 800, 5, 10, 3, 5, 3), menuBar);
         newMenuItem.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
-                gameController.changeWorld(new MyWorld(1280, 800, 5, 10, 3, 5, 3));
+                gameController.changeWorld(new MyWorld(1280, 800, 5, 10, 3, 2, 3));
             }
         });
         pauseMenuItem.addActionListener(new ActionListener() {
