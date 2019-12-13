@@ -43,7 +43,7 @@ public class MyWorld implements World {
         this.averageVelocity = averageVelocity;
         constant.add(new ImageObject(0 , 0, "Background.png", width, height));
         initializeShelves();
-        control.add(new Clown(width/2, height-450,"clown.png", 150, 450));
+        initializeSticks();
         int spawnFirst = rand.nextInt(activeCount);
         this.activeCount-= spawnFirst;
         for(int i=0; i < spawnFirst; i++)
@@ -66,7 +66,12 @@ public class MyWorld implements World {
             h += (int) Math.round(distBetwnRod * height);
 
         }
-
+    }
+    private void initializeSticks() {
+        for (int i = 0; i <2; i++){
+            control.add(new Clown(750-i*250, 250,"rod2.png", 15,300));
+        }
+        control.add(new Clown(500,490,"clown.png",265,200));
     }
     private void spawnShape(){
         boolean state = rand.nextDouble() > 0.5;
