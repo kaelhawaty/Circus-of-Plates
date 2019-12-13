@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Random;
 
 public class MyWorld implements World {
-    private static int MAX_TIME = 1 * 60 * 1000;	// 1 minute
+    private static int MAX_TIME = 100 * 60 * 1000;	// 1 minute
     private int score = 0;
     private long startTime = System.currentTimeMillis();
     private final int width;
