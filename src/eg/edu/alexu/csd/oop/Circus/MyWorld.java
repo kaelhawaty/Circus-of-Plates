@@ -101,6 +101,7 @@ public class MyWorld implements World {
             }
             for(Clown t: ((ClownWrapper)control.get(0)).getClowns()){
                     if (t.checkIntersectAndAdd(m)) {
+                        activeCount++;
                         toRemove.add(m);
 
                     }
