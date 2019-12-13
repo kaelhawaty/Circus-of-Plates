@@ -22,7 +22,7 @@ public class main {
         menu.add(resumeMenuItem);
         menuBar.add(menu);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        final GameEngine.GameController gameController = GameEngine.start("Very Simple Game in 99 Line of Code", new MyWorld((int) (0.75*screenSize.getWidth()), (int) (0.75*screenSize.getHeight()), 10, 5, 3, 5, 4, 4), menuBar);
+        final GameEngine.GameController gameController = GameEngine.start("Very Simple Game in 99 Line of Code", new MyWorld((int) (0.75*screenSize.getWidth()), (int) (0.75*screenSize.getHeight()), 10, 5, 3, 5, 4, 1), menuBar);
         newMenuItem.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
                 gameController.changeWorld(new MyWorld(1280, 800, 10, 5, 3, 2, 3, 2));
