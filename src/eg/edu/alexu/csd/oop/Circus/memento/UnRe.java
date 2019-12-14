@@ -22,14 +22,14 @@ public class UnRe {
                 myWorld.getConstantObjects().remove((originator.getState().size()));
               //  clown.removeFromStick(originator.getState().get((originator.getState().size())-1));
             }
-            else
-                myWorld.getConstantObjects().add(originator.getState().get((originator.getState().size())-1));
+           /* else
+                myWorld.getConstantObjects().add(originator.getState().get((originator.getState().size())-1));*/
             return true;
         }
         else if(originator.getStateNo()==1){
             myWorld.getConstantObjects().remove((originator.getState().size())-1);
             originator.setStateNo(originator.getStateNo()-1);
-
+            return true;
         }
         return false;
     }

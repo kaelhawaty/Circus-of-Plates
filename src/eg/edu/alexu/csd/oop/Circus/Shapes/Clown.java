@@ -83,16 +83,16 @@ public class Clown extends ImageObject{
         }else{
             stk.add(shape);
             myWorld.getConstantObjects().add(shape);
-            if(originator.getStateNo()<careTaker.getMementoSize()){
-                for(int i=originator.getStateNo(); i<careTaker.getMementoSize(); i++)
-                    careTaker.remove(i);
-            }
-            pass= myWorld.getConstantObjects().stream().collect(Collectors.toList());
-            originator.setState(pass);
-            careTaker.add(originator.saveToMemento());
-            originator.setStateNo(careTaker.getMementoSize());
         }
 
+        if(originator.getStateNo()<careTaker.getMementoSize()){
+            for(int i=originator.getStateNo(); i<careTaker.getMementoSize(); i++)
+                careTaker.remove(i);
+        }
+        pass= myWorld.getConstantObjects().stream().collect(Collectors.toList());
+        originator.setState(pass);
+        careTaker.add(originator.saveToMemento());
+        originator.setStateNo(careTaker.getMementoSize());
         return true;
     }
 

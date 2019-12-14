@@ -26,16 +26,23 @@ public class main {
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         MyWorld myWorld = new MyWorld((int) (0.75*screenSize.getWidth()), (int) (0.75*screenSize.getHeight()), 10, 5, 3, 5, 4, 1);
-
+        final int[] flag = {0};
+        final boolean[] disable = {false};
         JButton btnLine = new JButton("Undo");
         btnLine.setBackground(new Color(255, 255, 255));
         btnLine.setForeground(new Color(0, 0, 0));
        // btnLine.setFont(new Font("Bell MT", Font.BOLD, 19));
         btnLine.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                            myWorld.Undo();
-                        }
-                });
+                if(flag[0] ==3)
+                    btnLine.setEnabled(false);
+                else{
+                    if (myWorld.Undo()){
+                        flag[0]++;
+                     }
+                  }
+            }
+        });
 
         btnLine.setBounds(839, 69, 91, 31);
         menuBar.add( btnLine);
@@ -46,7 +53,9 @@ public class main {
         // btnLine.setFont(new Font("Bell MT", Font.BOLD, 19));
         btnLine2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                myWorld.Redo();
+               disable[0]= myWorld.Redo();
+               if(flag[0]==3&&!disable[0])
+                   btnLine2.setEnabled(false);
             }
         });
 
