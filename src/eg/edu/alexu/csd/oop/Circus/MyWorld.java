@@ -97,9 +97,6 @@ public class MyWorld implements World {
     public boolean Undo(){
        return unre.Undo(originator, careTaker, this);
     }
-    public boolean Redo(){
-        return unre.Redo(originator, careTaker, this);
-    }
     @Override
     public boolean refresh() {
         boolean timeout = System.currentTimeMillis() - startTime > MAX_TIME; // time end and game over

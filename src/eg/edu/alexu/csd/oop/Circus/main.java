@@ -28,41 +28,30 @@ public class main {
         MyWorld myWorld = new MyWorld((int) (0.75*screenSize.getWidth()), (int) (0.75*screenSize.getHeight()), 10, 5, 3, 5, 4, 1);
         final int[] flag = {0};
         final boolean[] disable = {false};
+
+        JLabel trials = new JLabel("    No of trials  "+String.valueOf(3-flag[0])+"  ");
+        trials.setBackground(new Color(250, 250, 250));
+        trials.setForeground(Color.black);
+        menuBar.add(trials);
+
         JButton btnLine = new JButton("Undo");
         btnLine.setBackground(new Color(255, 255, 255));
         btnLine.setForeground(new Color(0, 0, 0));
-       // btnLine.setFont(new Font("Bell MT", Font.BOLD, 19));
         btnLine.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if(flag[0] ==3)
-                    btnLine.setEnabled(false);
-                else{
                     if (myWorld.Undo()){
                         flag[0]++;
-                     }
-                  }
+                        trials.setText("    No of trials  "+String.valueOf(3-flag[0])+"  ");
+                    }
+                if(flag[0] ==3)
+                    btnLine.setEnabled(false);
             }
         });
-
         btnLine.setBounds(839, 69, 91, 31);
         menuBar.add( btnLine);
 
-        JButton btnLine2 = new JButton("Redo");
-        btnLine2.setBackground(new Color(255, 255, 255));
-        btnLine2.setForeground(new Color(0, 0, 0));
-        // btnLine.setFont(new Font("Bell MT", Font.BOLD, 19));
-        btnLine2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-               disable[0]= myWorld.Redo();
-               if(flag[0]==3&&!disable[0])
-                   btnLine2.setEnabled(false);
-            }
-        });
 
-        btnLine2.setBounds(939, 69, 91, 31);
-        menuBar.add( btnLine2);
-
-final GameEngine.GameController gameController = GameEngine.start("Very Simple Game in 99 Line of Code",myWorld , menuBar);
+        final GameEngine.GameController gameController = GameEngine.start("Very Simple Game in 99 Line of Code",myWorld , menuBar);
         newMenuItem.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
                 gameController.changeWorld(new MyWorld(1280, 800, 10, 5, 3, 2, 3, 2));
@@ -75,7 +64,7 @@ final GameEngine.GameController gameController = GameEngine.start("Very Simple G
         });
         resumeMenuItem.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
-               gameController.resume();
+                gameController.resume();
             }
         });
     }
