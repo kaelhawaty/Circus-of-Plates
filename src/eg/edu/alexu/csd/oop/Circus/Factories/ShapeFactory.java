@@ -3,6 +3,7 @@ package eg.edu.alexu.csd.oop.Circus.Factories;
 import eg.edu.alexu.csd.oop.Circus.Loader.ShapesLoader;
 import eg.edu.alexu.csd.oop.Circus.Shapes.Shape;
 import eg.edu.alexu.csd.oop.Circus.Shapes.ShapeState;
+import eg.edu.alexu.csd.oop.Circus.logging;
 import eg.edu.alexu.csd.oop.game.GameObject;
 
 import java.awt.*;
@@ -18,7 +19,7 @@ public class ShapeFactory {
     private Map<String, BufferedImage> mp; // Flyweight Design Pattern
     private ShapesLoader sL;
     public static ShapeFactory instance;
-
+    logging log=new logging();
     /**
      * Singleton Design Pattern
      * @return Single instance of this class
@@ -50,6 +51,7 @@ public class ShapeFactory {
         sL.loadDirectory(f);
         ;
         if (loadedClass.isEmpty()) {
+            log.help().finer("plugins are empty");
             throw new RuntimeException("Plugins can't be Empty, There needs to be at least one class for this game to run");
         }
     }
@@ -62,6 +64,7 @@ public class ShapeFactory {
      */
     public Shape getRandomShape(int count, int posX, int posY, int screenWidth, int screenHeight, ShapeState state){
         if(count > loadedClass.size()){
+            log.help().finer("No enough classes");
             throw new RuntimeException("There is no enough classes for this Command");
         }
         Random rand = new Random();
@@ -70,11 +73,13 @@ public class ShapeFactory {
         try{
             sh = (Shape) loadedClass.get(idx).getDeclaredConstructor(new Class[]{int.class, int.class, int.class, int.class, ShapeState.class}).newInstance(
                     new Object[]{posX, posY, screenWidth, screenHeight, state });
-
+            log.help().info(sh.getClass().getName()+" is Loaded");
         } catch (IllegalAccessException e) {
+            log.help().finer("Can't access the class");
             System.out.println("Can't Access this class " + loadedClass.get(idx));
             e.printStackTrace();
         } catch (InstantiationException | NoSuchMethodException e) {
+            log.help().finer("Can't create object of this class");
             System.out.println("Can't Create an object of this class " + loadedClass.get(idx) );
             e.printStackTrace();
         } catch (InvocationTargetException e) {
@@ -90,6 +95,7 @@ public class ShapeFactory {
      */
     public BufferedImage getImage(String name) {
         if(!mp.containsKey(name)){
+            log.help().finer("Image doesn't exist");
             throw new RuntimeException("Image doesn't exist");
         }
         return mp.get(name);
@@ -104,8 +110,10 @@ public class ShapeFactory {
     private boolean similarTo(Color a, Color b){
         double distance = (a.getRed() - b.getRed())*(a.getRed() - b.getRed()) + (a.getGreen() - b.getGreen())*(a.getGreen() - b.getGreen()) + (a.getBlue() - b.getBlue())*(a.getBlue() - b.getBlue());
         if(distance < 700){
+            log.help().info("shapes have the same color");
             return true;
         }else{
+            log.help().info("shapes have different colors");
             return false;
         }
     }

@@ -5,6 +5,9 @@ import eg.edu.alexu.csd.oop.Circus.Shapes.Clown;
 import eg.edu.alexu.csd.oop.Circus.Shapes.ClownWrapper;
 import eg.edu.alexu.csd.oop.Circus.Shapes.ImageObject;
 import eg.edu.alexu.csd.oop.Circus.Shapes.Shape;
+import eg.edu.alexu.csd.oop.Circus.memento.CareTaker;
+import eg.edu.alexu.csd.oop.Circus.memento.Originator;
+import eg.edu.alexu.csd.oop.Circus.memento.UnRe;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
@@ -14,7 +17,7 @@ import java.util.List;
 import java.util.Random;
 
 public class MyWorld implements World {
-    private static int MAX_TIME = 100 * 60 * 1000;	// 1 minute
+    private static int MAX_TIME =2* 60 * 1000;	// 1 minute
     private Score score;
     private long startTime = System.currentTimeMillis();
     private final int width;
@@ -34,6 +37,10 @@ public class MyWorld implements World {
     private final double scaleBtnRods = 2;
     private int clowns;
     private final long deadTime = 10*1000;
+    private Originator originator = new Originator();
+    private CareTaker careTaker = new CareTaker();
+    private UnRe unre= new UnRe();
+    logging log=new logging();
     public MyWorld(int screenWidth, int screenHeight, int activeCount, double averageVelocity, int diffShapes, int waveTime, int shelfLevel, int clowns) {
         width = screenWidth;
         height = screenHeight;
@@ -55,7 +62,7 @@ public class MyWorld implements World {
     private void initializeClowns(){
         ClownWrapper cw = new ClownWrapper(width);
         for(int i = 0; i < clowns; i++) {
-            Clown cl = new Clown((int) Math.round(1.0 * (i+1) / (clowns+1) *width)-(int) Math.round(width * 0.10)/2, height - (int) Math.round(height * 0.25), "clown.png", (int) Math.round(width * 0.10), (int) Math.round(height * 0.23), this);
+            Clown cl = new Clown((int) Math.round(1.0 * (i+1) / (clowns+1) *width)-(int) Math.round(width * 0.10)/2, height - (int) Math.round(height * 0.25), "clown.png", (int) Math.round(width * 0.10), (int) Math.round(height * 0.23), this, originator, careTaker);
             cl.addObserver(score);
             constant.add(cl);
             cw.addClown(cl);
@@ -88,6 +95,17 @@ public class MyWorld implements World {
             s.getState().setParameters(0.005, 0.001, 0.2);
         }
     }
+
+    public boolean Undo(){
+        Boolean res=unre.Undo(originator, careTaker, this);
+        if(res==true)
+            log.help().info("plate is removed");
+        else {
+            log.help().warning("no plates to remove");
+        }
+        return res;
+    }
+
     @Override
     public boolean refresh() {
         boolean timeout = System.currentTimeMillis() - startTime > MAX_TIME; // time end and game over
@@ -103,7 +121,7 @@ public class MyWorld implements World {
                     if (t.checkIntersectAndAdd(m)) {
                         activeCount++;
                         toRemove.add(m);
-
+                        log.help().info("clown got "+s.getClass().getName());
                     }
 
             }
@@ -120,11 +138,14 @@ public class MyWorld implements World {
                 toRemove.add(m);
                 objectPool.releaseShape((Shape) m);
                 activeCount++;
+                log.help().info(((Shape)m).getClass().getName()+" is broken");
             }
         }
         for(GameObject m :toRemove){
             moving.remove(m);
         }
+        if(score.getScore()==10)
+            timeout=true;
         return !timeout;
     }
     public ObjectPool getObjectPool(){

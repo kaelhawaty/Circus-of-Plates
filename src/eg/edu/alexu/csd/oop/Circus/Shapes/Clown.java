@@ -1,29 +1,39 @@
 package eg.edu.alexu.csd.oop.Circus.Shapes;
 
-
 import eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory;
 import eg.edu.alexu.csd.oop.Circus.MyWorld;
 import eg.edu.alexu.csd.oop.Circus.Observer.DelegatedObserver;
+import eg.edu.alexu.csd.oop.Circus.memento.CareTaker;
+import eg.edu.alexu.csd.oop.Circus.memento.Originator;
+import eg.edu.alexu.csd.oop.Circus.memento.UnRe;
 import eg.edu.alexu.csd.oop.game.GameObject;
-import eg.edu.alexu.csd.oop.game.World;
-
 import java.util.LinkedList;
-import java.util.Observable;
+import java.util.List;
 import java.util.Observer;
+import java.util.stream.Collectors;
 
 
-public class Clown extends ImageObject {
+public class Clown extends ImageObject{
     LinkedList<GameObject> left;
     LinkedList<GameObject> right;
     MyWorld myWorld;
     ImageObject stickLeft;
     ImageObject stickRight;
+    private Originator originator;
+    private CareTaker careTaker;
+    private LinkedList<GameObject> plates;
     private DelegatedObserver obs = new DelegatedObserver();
-    public Clown(int x, int y, String path, int width, int height, MyWorld myWorld) {
+    private List<GameObject> pass = new LinkedList<GameObject>();
+    private UnRe shoot = new UnRe();
+    private GameObject gameObject;
+
+    public Clown(int x, int y, String path, int width, int height, MyWorld myWorld, Originator originator, CareTaker careTaker) {
         super(x, y, path, width, height);
         left = new LinkedList<>();
         right = new LinkedList<>();
         this.myWorld = myWorld;
+        this.originator=originator;
+        this.careTaker=careTaker;
         stickLeft = new ImageObject(x-(int) Math.round(0.43*width), (int) (y - Math.round(0.20*height)), "LeftStick.png",(int) Math.round(0.5*width),(int) Math.round(0.5*height));
         stickRight = new ImageObject(x+(int) Math.round(0.92*width), (int) (y-Math.round(0.20*height)), "RightStick.png",(int) Math.round(0.5*width),(int) Math.round(0.5*height));
         myWorld.getConstantObjects().add(stickLeft);
@@ -38,10 +48,14 @@ public class Clown extends ImageObject {
                 return addShape(shape, left);
             }
         }else{
+            RemoveFromStk(left);
+            AddToStk(left);
             GameObject top = left.peekLast();
-            if(top.getX() <= midX && midX <= (top.getX()+top.getWidth()) && Math.abs(top.getY() - y) < 15){
-                shape.setY(top.getY()-shape.getHeight());
-                return addShape(shape, left);
+            if(top!=null) {
+                if (top.getX() <= midX && midX <= (top.getX() + top.getWidth()) && Math.abs(top.getY() - y) < 15) {
+                    shape.setY(top.getY() - shape.getHeight());
+                    return addShape(shape, left);
+                }
             }
         }
         if(right.isEmpty()){
@@ -50,10 +64,14 @@ public class Clown extends ImageObject {
                 return addShape(shape, right);
             }
         }else{
+            RemoveFromStk(right);
+            AddToStk(right);
             GameObject top = right.peekLast();
-            if(top.getX() <= midX && midX <= (top.getX()+top.getWidth()) && Math.abs(top.getY() - y) < 15){
-                shape.setY(top.getY()-shape.getHeight());
-                return addShape(shape, right);
+            if(top!=null) {
+                if (top.getX() <= midX && midX <= (top.getX() + top.getWidth()) && Math.abs(top.getY() - y) < 15) {
+                    shape.setY(top.getY() - shape.getHeight());
+                    return addShape(shape, right);
+                }
             }
         }
         return false;
@@ -64,6 +82,9 @@ public class Clown extends ImageObject {
             Shape sh2 = (Shape) stk.removeLast();
             myWorld.getObjectPool().releaseShape(sh1);
             myWorld.getObjectPool().releaseShape(sh2);
+            careTaker.remove(careTaker.getMementoSize()-1);
+            careTaker.remove(careTaker.getMementoSize()-1);
+            originator.setStateNo(originator.getStateNo()-2);
             myWorld.getConstantObjects().remove(sh1);
             myWorld.getConstantObjects().remove(sh2);
             obs.setChanged();
@@ -71,8 +92,52 @@ public class Clown extends ImageObject {
         }else{
             stk.add(shape);
             myWorld.getConstantObjects().add(shape);
+            if(originator.getStateNo()<careTaker.getMementoSize()){
+                int round = careTaker.getMementoSize()-originator.getStateNo();
+                while (round>0) {
+                    careTaker.remove(careTaker.getMementoSize()-1);
+                    round--;
+                }
+
+            }
+            pass= myWorld.getConstantObjects().stream().collect(Collectors.toList());
+            originator.setState(pass);
+            careTaker.add(originator.saveToMemento());
+            originator.setStateNo(originator.getStateNo()+1);
         }
         return true;
+    }
+
+    private void RemoveFromStk(LinkedList<GameObject> stk){
+        while (stk.size()>0) {
+            if (!myWorld.getConstantObjects().contains(stk.getLast())){
+                stk.remove(stk.size()-1);
+            }
+            else
+                break;;
+        }
+    }
+
+    private void AddToStk(LinkedList<GameObject> stk){
+        int i = myWorld.getConstantObjects().size()-1;
+        while (i>0) {
+            if (!stk.contains(myWorld.getConstantObjects().get(i)))
+                i--;
+            break;
+        }
+
+        for(int j=i+1; j<myWorld.getConstantObjects().size(); j++){
+            GameObject gameObject=myWorld.getConstantObjects().get(j);
+            int midX = gameObject.getX()+gameObject.getWidth()/2;
+            GameObject top = stk.peekLast();
+            if(top!=null) {
+                if (top.getX() <= midX && midX <= (top.getX() + top.getWidth()) && Math.abs(top.getY() - y) < 15) {
+                    gameObject.setY(top.getY() - gameObject.getHeight());
+                    stk.add(gameObject);
+                }
+
+            }
+        }
     }
 
     private boolean checkTop(int n, GameObject shape, LinkedList<GameObject> stk){
@@ -86,6 +151,7 @@ public class Clown extends ImageObject {
         stk.add(p);
         return flag;
     }
+
     @Override
     public void setX(int x){
         int vec = x-this.x;
