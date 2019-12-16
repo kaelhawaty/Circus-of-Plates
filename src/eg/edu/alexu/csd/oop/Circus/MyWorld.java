@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Random;
 
 public class MyWorld implements World {
-    private static int MAX_TIME = 100 * 60 * 1000;	// 1 minute
+    private static int MAX_TIME =2* 60 * 1000;	// 1 minute
     private Score score;
     private long startTime = System.currentTimeMillis();
     private final int width;
@@ -40,6 +40,7 @@ public class MyWorld implements World {
     private Originator originator = new Originator();
     private CareTaker careTaker = new CareTaker();
     private UnRe unre= new UnRe();
+    logging log=new logging();
     public MyWorld(int screenWidth, int screenHeight, int activeCount, double averageVelocity, int diffShapes, int waveTime, int shelfLevel, int clowns) {
         width = screenWidth;
         height = screenHeight;
@@ -95,8 +96,16 @@ public class MyWorld implements World {
         }
     }
     public boolean Undo(){
-       return unre.Undo(originator, careTaker, this);
+        Boolean res=unre.Undo(originator, careTaker, this);
+        if(res==true)
+            log.help().info("plate is removed");
+        else {
+            log.help().warning("no plates to remove");
+        }
+        return res;
     }
+
+
     @Override
     public boolean refresh() {
         boolean timeout = System.currentTimeMillis() - startTime > MAX_TIME; // time end and game over
@@ -112,7 +121,7 @@ public class MyWorld implements World {
                     if (t.checkIntersectAndAdd(m)) {
                         activeCount++;
                         toRemove.add(m);
-
+                        log.help().info("clown got "+s.getClass().getName());
                     }
 
             }
@@ -129,11 +138,15 @@ public class MyWorld implements World {
                 toRemove.add(m);
                 objectPool.releaseShape((Shape) m);
                 activeCount++;
+                log.help().info(((Shape)m).getClass().getName()+" is broken");
             }
         }
         for(GameObject m :toRemove){
             moving.remove(m);
         }
+        if(score.getScore()==10)
+            timeout=true;
+
         return !timeout;
     }
     public ObjectPool getObjectPool(){
@@ -150,4 +163,5 @@ public class MyWorld implements World {
     public String getStatus() {
         return "Score=" + score.getScore() + "   |   Time=" + Math.max(0, (MAX_TIME - (System.currentTimeMillis()-startTime))/1000);	// update status
     }
+
 }
