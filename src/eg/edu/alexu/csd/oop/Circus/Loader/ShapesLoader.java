@@ -1,5 +1,6 @@
 package eg.edu.alexu.csd.oop.Circus.Loader;
 
+import eg.edu.alexu.csd.oop.Circus.Shapes.Cloneable;
 import eg.edu.alexu.csd.oop.Circus.Shapes.Shape;
 import eg.edu.alexu.csd.oop.Circus.Shapes.ShapeState;
 
@@ -108,7 +109,9 @@ public class ShapesLoader {
                     Class<?> cls = Class.forName(className, true, loader);
                     if (!cls.isInterface()
                             && !Modifier.isAbstract(cls.getModifiers())
-                            && Shape.class.isAssignableFrom(cls) && !st.contains(cls)
+                            && Shape.class.isAssignableFrom(cls)
+                            && Cloneable.class.isAssignableFrom(cls)
+                            && !st.contains(cls)
                             && constructorAvailableTest((Class<? extends Shape>) cls)) {
                         loadedClass.add((Class<? extends Shape>) cls);
                         st.add((Class<? extends Shape>) cls);
@@ -135,9 +138,14 @@ public class ShapesLoader {
      * @return A boolean representing the existence of a specific  constructor
      */
     public boolean constructorAvailableTest(Class<? extends Shape> cls) {
-
+        //int posX, int posY, BufferedImage[] images, int screenWidth, int screenHeight,  ShapeState state
         try {
             Constructor<?> contructor = cls.getConstructor(new Class[]{int.class, int.class, int.class, int.class, ShapeState.class});
+        } catch (NoSuchMethodException nsme) {
+            return false;
+        }
+        try {
+            Constructor<?> contructor = cls.getConstructor(new Class[]{int.class, int.class, BufferedImage[].class, int.class, int.class, ShapeState.class});
         } catch (NoSuchMethodException nsme) {
             return false;
         }
