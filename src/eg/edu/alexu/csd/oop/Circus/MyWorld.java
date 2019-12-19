@@ -98,12 +98,12 @@ public class MyWorld implements World {
 
     @Override
     public boolean refresh() {
+        boolean timeout = System.currentTimeMillis() - startTime > MAX_TIME; // time end and game over
         if(replayFlag) {
             replay();
             return true;
         }
         caretaker.addMemento(save());
-        boolean timeout = System.currentTimeMillis() - startTime > MAX_TIME; // time end and game over
         long timeSinceLastWave = System.currentTimeMillis() - lastWave;
         List<GameObject> toRemove = new ArrayList<>();
         for(GameObject m : moving){
@@ -173,6 +173,9 @@ public class MyWorld implements World {
         score.setScore(m.scoreVal);
     }
     public void replay(){
+        if(!replayFlag) {
+            startTime = System.currentTimeMillis();
+        }
         replayFlag = caretaker.replay();
     }
     public class Memento{
