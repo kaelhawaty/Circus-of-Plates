@@ -3,41 +3,40 @@ package eg.edu.alexu.csd.oop.Circus.Shapes;
 import eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory;
 import eg.edu.alexu.csd.oop.Circus.MyWorld;
 import eg.edu.alexu.csd.oop.Circus.Observer.DelegatedObserver;
-import eg.edu.alexu.csd.oop.Circus.memento.CareTaker;
-import eg.edu.alexu.csd.oop.Circus.memento.Originator;
-import eg.edu.alexu.csd.oop.Circus.memento.UnRe;
 import eg.edu.alexu.csd.oop.game.GameObject;
+
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Observer;
-import java.util.stream.Collectors;
 
 
-public class Clown extends ImageObject{
-    LinkedList<GameObject> left;
-    LinkedList<GameObject> right;
-    MyWorld myWorld;
-    ImageObject stickLeft;
-    ImageObject stickRight;
-    private Originator originator;
-    private CareTaker careTaker;
-    private LinkedList<GameObject> plates;
+public class Clown extends ImageObject implements Cloneable{
+    private LinkedList<GameObject> left;
+    private LinkedList<GameObject> right;
+    private MyWorld myWorld;
+    private ImageObject stickLeft;
+    private ImageObject stickRight;
     private DelegatedObserver obs = new DelegatedObserver();
-    private List<GameObject> pass = new LinkedList<GameObject>();
-    private UnRe shoot = new UnRe();
-    private GameObject gameObject;
 
-    public Clown(int x, int y, String path, int width, int height, MyWorld myWorld, Originator originator, CareTaker careTaker) {
+    public Clown(int x, int y, String path, int width, int height, MyWorld myWorld) {
         super(x, y, path, width, height);
         left = new LinkedList<>();
         right = new LinkedList<>();
         this.myWorld = myWorld;
-        this.originator=originator;
-        this.careTaker=careTaker;
         stickLeft = new ImageObject(x-(int) Math.round(0.43*width), (int) (y - Math.round(0.20*height)), "LeftStick.png",(int) Math.round(0.5*width),(int) Math.round(0.5*height));
         stickRight = new ImageObject(x+(int) Math.round(0.92*width), (int) (y-Math.round(0.20*height)), "RightStick.png",(int) Math.round(0.5*width),(int) Math.round(0.5*height));
         myWorld.getConstantObjects().add(stickLeft);
         myWorld.getConstantObjects().add(stickRight);
+    }
+    public Clown(int x, int y, BufferedImage[] sprite, ImageObject stickLeft, ImageObject stickRight, LinkedList<GameObject> left, LinkedList<GameObject> right, DelegatedObserver obs ,
+                 MyWorld myWorld){
+        super(x, y, sprite);
+        this.obs = obs;
+        this.stickLeft = stickLeft;
+        this.stickRight = stickRight;
+        this.left = left;
+        this.right = right;
+        this.myWorld = myWorld;
     }
     public boolean checkIntersectAndAdd(GameObject shape){
         int midX = shape.getX()+shape.getWidth()/2;
@@ -82,9 +81,6 @@ public class Clown extends ImageObject{
             Shape sh2 = (Shape) stk.removeLast();
             myWorld.getObjectPool().releaseShape(sh1);
             myWorld.getObjectPool().releaseShape(sh2);
-            careTaker.remove(careTaker.getMementoSize()-1);
-            careTaker.remove(careTaker.getMementoSize()-1);
-            originator.setStateNo(originator.getStateNo()-2);
             myWorld.getConstantObjects().remove(sh1);
             myWorld.getConstantObjects().remove(sh2);
             obs.setChanged();
@@ -92,18 +88,6 @@ public class Clown extends ImageObject{
         }else{
             stk.add(shape);
             myWorld.getConstantObjects().add(shape);
-            if(originator.getStateNo()<careTaker.getMementoSize()){
-                int round = careTaker.getMementoSize()-originator.getStateNo();
-                while (round>0) {
-                    careTaker.remove(careTaker.getMementoSize()-1);
-                    round--;
-                }
-
-            }
-            pass= myWorld.getConstantObjects().stream().collect(Collectors.toList());
-            originator.setState(pass);
-            careTaker.add(originator.saveToMemento());
-            originator.setStateNo(originator.getStateNo()+1);
         }
         return true;
     }
@@ -188,5 +172,28 @@ public class Clown extends ImageObject{
 
     public void removeObserver(Observer ob) {
         obs.deleteObserver(ob);
+    }
+    public void addToWorld(){
+        myWorld.getConstantObjects().add(stickLeft);
+        myWorld.getConstantObjects().add(stickRight);
+        myWorld.getConstantObjects().add(this);
+        for(GameObject o: left){
+            myWorld.getConstantObjects().add(o);
+        }
+        for(GameObject o: right){
+            myWorld.getConstantObjects().add(o);
+        }
+    }
+    @Override
+    public GameObject clone(){
+        LinkedList<GameObject> cpyleft = new LinkedList<>();
+        LinkedList<GameObject> cpyRight = new LinkedList<>();
+        for(GameObject o: this.left){
+            cpyleft.add(((Cloneable)o).clone());
+        }
+        for(GameObject o : this.right){
+            cpyRight.add(((Cloneable)o).clone());
+        }
+        return new Clown(x, y , images, (ImageObject) stickLeft.clone(), (ImageObject) stickRight.clone(), cpyleft, cpyRight, obs, myWorld);
     }
 }

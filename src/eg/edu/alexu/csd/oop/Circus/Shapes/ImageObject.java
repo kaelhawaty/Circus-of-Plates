@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class ImageObject implements GameObject {
+public class ImageObject implements GameObject, Cloneable {
     protected BufferedImage[] images;
     protected int x;
     protected int y;
@@ -25,6 +25,14 @@ public class ImageObject implements GameObject {
         visible = true;
         this.height = height;
         this.width = width;
+    }
+    public ImageObject( int x , int y, BufferedImage[] images){
+        this.x = x;
+        this.y = y;
+        this.images = images;
+        visible = true;
+        width = images[0].getWidth();
+        height = images[0].getHeight();
     }
 
     @Override
@@ -81,5 +89,9 @@ public class ImageObject implements GameObject {
         g.drawImage(originalImage, 0, 0, scaledWidth, scaledHeight, null);
         g.dispose();
         return scaledBI;
+    }
+    @Override
+    public GameObject clone(){
+        return new ImageObject(x, y, images);
     }
 }

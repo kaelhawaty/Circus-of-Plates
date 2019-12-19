@@ -53,4 +53,8 @@ public class ShapeState {
             vX = (-vX * 0.5);
         }
     }
+    public ShapeState clone(){
+        return new ShapeState(vX, vY, a, b ,aY);
+
+    }
 }

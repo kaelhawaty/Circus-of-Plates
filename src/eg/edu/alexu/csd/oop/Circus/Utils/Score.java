@@ -1,4 +1,6 @@
-package eg.edu.alexu.csd.oop.Circus;
+package eg.edu.alexu.csd.oop.Circus.Utils;
+
+import eg.edu.alexu.csd.oop.Circus.logging;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -13,5 +15,8 @@ public class Score implements Observer {
     }
     public int getScore(){
         return score;
+    }
+    public void setScore(int val){
+        score = val;
     }
 }

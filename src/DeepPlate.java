@@ -1,11 +1,13 @@
 import eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory;
+import eg.edu.alexu.csd.oop.Circus.Shapes.Cloneable;
 import eg.edu.alexu.csd.oop.Circus.Shapes.Shape;
 import eg.edu.alexu.csd.oop.Circus.Shapes.ShapeState;
+import eg.edu.alexu.csd.oop.game.GameObject;
 
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-public class DeepPlate implements Shape {
+public class DeepPlate implements Shape, Cloneable {
     private BufferedImage[] images;
     private int x;
     private int y;
@@ -22,6 +24,16 @@ public class DeepPlate implements Shape {
         Random rand = new Random();
         int idx = rand.nextInt(5);
         images = new BufferedImage[]{ShapeFactory.getInstance().getImage("DeepPlate" + ((idx != 0) ? idx : "") + ".png" )};
+        width = images[0].getWidth();
+        height = images[0].getHeight();
+        this.screenHeight = screenHeight;
+        this.screenWidth = screenWidth;
+    }
+    public DeepPlate(int posX, int posY, BufferedImage[] images, int screenWidth, int screenHeight,  ShapeState state){
+        x = posX;
+        y = posY;
+        this.state = state;
+        this.images = images;
         width = images[0].getWidth();
         height = images[0].getHeight();
         this.screenHeight = screenHeight;
@@ -102,5 +114,10 @@ public class DeepPlate implements Shape {
         Random rand = new Random();
         int idx = rand.nextInt(5);
         images = new BufferedImage[]{ShapeFactory.getInstance().getImage("DeepPlate" + ((idx != 0) ? idx : "") + ".png" )};
+    }
+
+    @Override
+    public GameObject clone() {
+        return new DeepPlate(x, y, images, screenWidth, screenHeight, this.getState().clone());
     }
 }

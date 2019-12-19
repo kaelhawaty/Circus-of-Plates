@@ -1,5 +1,6 @@
 package eg.edu.alexu.csd.oop.Circus;
 
+import eg.edu.alexu.csd.oop.Circus.Utils.Caretaker;
 import eg.edu.alexu.csd.oop.game.GameEngine;
 import javax.swing.*;
 import java.awt.*;
@@ -39,21 +40,17 @@ public class start {
         trials.setForeground(Color.black);
         menuBar.add(trials);
 
-        JButton btnLine = new JButton("Undo");
+        JButton btnLine = new JButton("Replay");
         btnLine.setBackground(new Color(255, 255, 255));
         btnLine.setForeground(new Color(0, 0, 0));
-        btnLine.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (myWorld.Undo()){
-                    flag[0]++;
-                    trials.setText("    remaining trials  "+String.valueOf(3-flag[0])+"  ");
-                }
-                if(flag[0] ==3)
-                    btnLine.setEnabled(false);
-            }
-        });
+        btnLine.addActionListener(e -> {
+            myWorld.replay();
+
+        }
+        );
         btnLine.setBounds(839, 69, 91, 31);
         menuBar.add( btnLine);
+
 
        final GameEngine.GameController gameController = GameEngine.start("Very Simple Game in 99 Line of Code", myWorld, menuBar);
         newMenuItem.addActionListener(new ActionListener() {

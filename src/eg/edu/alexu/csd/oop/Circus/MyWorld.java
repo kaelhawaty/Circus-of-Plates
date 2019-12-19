@@ -1,13 +1,14 @@
 package eg.edu.alexu.csd.oop.Circus;
 
 
+import eg.edu.alexu.csd.oop.Circus.Shapes.Cloneable;
 import eg.edu.alexu.csd.oop.Circus.Shapes.Clown;
 import eg.edu.alexu.csd.oop.Circus.Shapes.ClownWrapper;
 import eg.edu.alexu.csd.oop.Circus.Shapes.ImageObject;
 import eg.edu.alexu.csd.oop.Circus.Shapes.Shape;
-import eg.edu.alexu.csd.oop.Circus.memento.CareTaker;
-import eg.edu.alexu.csd.oop.Circus.memento.Originator;
-import eg.edu.alexu.csd.oop.Circus.memento.UnRe;
+import eg.edu.alexu.csd.oop.Circus.Utils.Caretaker;
+import eg.edu.alexu.csd.oop.Circus.Utils.ObjectPool;
+import eg.edu.alexu.csd.oop.Circus.Utils.Score;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
@@ -22,7 +23,7 @@ public class MyWorld implements World {
     private long startTime = System.currentTimeMillis();
     private final int width;
     private final int height;
-    private final List<GameObject> constant = new LinkedList<GameObject>();
+    private List<GameObject> constant = new LinkedList<GameObject>();
     private final List<GameObject> moving = new LinkedList<GameObject>();
     private final List<GameObject> control = new LinkedList<GameObject>();
     private ObjectPool objectPool;
@@ -36,12 +37,12 @@ public class MyWorld implements World {
     private final double scaleWidthRod = 5/18.0;
     private final double scaleBtnRods = 2;
     private int clowns;
+    private boolean replayFlag = false;
     private final long deadTime = 10*1000;
-    private Originator originator = new Originator();
-    private CareTaker careTaker = new CareTaker();
-    private UnRe unre= new UnRe();
+    private Caretaker caretaker;
     logging log=new logging();
     public MyWorld(int screenWidth, int screenHeight, int activeCount, double averageVelocity, int diffShapes, int waveTime, int shelfLevel, int clowns) {
+        this.caretaker =  new Caretaker(this);
         width = screenWidth;
         height = screenHeight;
         this.activeCount = activeCount;
@@ -60,14 +61,13 @@ public class MyWorld implements World {
         lastWave = System.currentTimeMillis();
     }
     private void initializeClowns(){
-        ClownWrapper cw = new ClownWrapper(width);
+        ClownWrapper cw = new ClownWrapper(width, this);
         for(int i = 0; i < clowns; i++) {
-            Clown cl = new Clown((int) Math.round(1.0 * (i+1) / (clowns+1) *width)-(int) Math.round(width * 0.10)/2, height - (int) Math.round(height * 0.25), "clown.png", (int) Math.round(width * 0.10), (int) Math.round(height * 0.23), this, originator, careTaker);
+            Clown cl = new Clown((int) Math.round(1.0 * (i+1) / (clowns+1) *width)-(int) Math.round(width * 0.10)/2, height - (int) Math.round(height * 0.25), "clown.png", (int) Math.round(width * 0.10), (int) Math.round(height * 0.23), this);
             cl.addObserver(score);
-            constant.add(cl);
             cw.addClown(cl);
         }
-        control.add(cw);
+        cw.addToWorld();
     }
     private void initializeShelves() {
         int w = (int) Math.round(scaleWidthRod * width);
@@ -96,18 +96,13 @@ public class MyWorld implements World {
         }
     }
 
-    public boolean Undo(){
-        Boolean res=unre.Undo(originator, careTaker, this);
-        if(res==true)
-            log.help().info("plate is removed");
-        else {
-            log.help().warning("no plates to remove");
-        }
-        return res;
-    }
-
     @Override
     public boolean refresh() {
+        if(replayFlag) {
+            replay();
+            return true;
+        }
+        caretaker.addMemento(save());
         boolean timeout = System.currentTimeMillis() - startTime > MAX_TIME; // time end and game over
         long timeSinceLastWave = System.currentTimeMillis() - lastWave;
         List<GameObject> toRemove = new ArrayList<>();
@@ -127,6 +122,7 @@ public class MyWorld implements World {
             }
         }
         if(timeSinceLastWave > waveTime && activeCount > 0) {
+            caretaker.addMemento(this.save());
             int spawnFirst = Math.min(rand.nextInt(activeCount)+1,activeCount);
             activeCount -= spawnFirst;
             for (int i = 0; i < spawnFirst; i++)
@@ -161,5 +157,34 @@ public class MyWorld implements World {
     @Override
     public String getStatus() {
         return "Score=" + score.getScore() + "   |   Time=" + Math.max(0, (MAX_TIME - (System.currentTimeMillis()-startTime))/1000);	// update status
+    }
+
+    public Memento save(){
+        return new Memento(constant, moving, control);
+    }
+    public void restore(Memento m){
+        constant = constant.subList(0, 1+2*shelfLevel);
+        moving.clear();
+        control.clear();
+        for(GameObject o: m.moving){
+            moving.add(o);
+        }
+        m.cw.addToWorld();
+        score.setScore(m.scoreVal);
+    }
+    public void replay(){
+        replayFlag = caretaker.replay();
+    }
+    public class Memento{
+        private final List<GameObject> moving = new LinkedList<GameObject>();
+        private final ClownWrapper cw;
+        private final int scoreVal;
+        private Memento(List<GameObject> constant, List<GameObject> moving, List<GameObject> control ){
+                for(GameObject o : moving){
+                    this.moving.add(((Cloneable)o).clone());
+                }
+                cw = (ClownWrapper) ((Cloneable)control.get(0)).clone();
+                scoreVal = score.getScore();
+        }
     }
 }
