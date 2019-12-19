@@ -5,6 +5,7 @@ import eg.edu.alexu.csd.oop.Circus.Shapes.Shape;
 import eg.edu.alexu.csd.oop.Circus.Shapes.ShapeState;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.lang.reflect.Constructor;
@@ -13,6 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.*;
+import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
@@ -21,11 +23,12 @@ public class ShapesLoader {
     private List<Class<? extends Shape>> loadedClass;
     private Set<Class<? extends Shape>> st;
     private Map<String, BufferedImage> mp;
-
+    private Dimension screenSize;
     public ShapesLoader(List<Class<? extends Shape>> loadedClass, Map<String, BufferedImage> mp) {
         this.loadedClass = loadedClass;
         st = new HashSet<>();
         this.mp = mp;
+        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     }
 
     /**
@@ -77,7 +80,8 @@ public class ShapesLoader {
             JarEntry entry = jis.getNextJarEntry();
             while (entry != null) {
                 if (entry.getName().matches(className + "[0-9]*\\.png")) {
-                    mp.put(entry.getName(), ImageIO.read(loader.getResourceAsStream(entry.getName())));
+                    BufferedImage bufferedImage = ImageIO.read(loader.getResourceAsStream(entry.getName()));
+                    mp.put(entry.getName(), createResizedCopy(bufferedImage, (int) Math.round((900.0 / screenSize.getWidth()) * bufferedImage.getWidth()), (int) Math.round((500.0 / screenSize.getHeight()) * bufferedImage.getHeight()), false));
                 }
                 entry = jis.getNextJarEntry();
             }
@@ -150,5 +154,19 @@ public class ShapesLoader {
             return false;
         }
         return true;
+    }
+    private BufferedImage createResizedCopy(Image originalImage,
+                                              int scaledWidth, int scaledHeight,
+                                              boolean preserveAlpha)
+    {
+        int imageType = preserveAlpha ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
+        BufferedImage scaledBI = new BufferedImage(scaledWidth, scaledHeight, imageType);
+        Graphics2D g = scaledBI.createGraphics();
+        if (preserveAlpha) {
+            g.setComposite(AlphaComposite.Src);
+        }
+        g.drawImage(originalImage, 0, 0, scaledWidth, scaledHeight, null);
+        g.dispose();
+        return scaledBI;
     }
 }

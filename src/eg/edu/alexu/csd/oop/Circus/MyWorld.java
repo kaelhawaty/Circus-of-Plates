@@ -12,6 +12,7 @@ import eg.edu.alexu.csd.oop.Circus.Utils.Score;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -41,7 +42,10 @@ public class MyWorld implements World {
     private final long deadTime = 10*1000;
     private Caretaker caretaker;
     logging log=new logging();
-    public MyWorld(int screenWidth, int screenHeight, int activeCount, double averageVelocity, int diffShapes, int waveTime, int shelfLevel, int clowns) {
+    private String level;
+    private int flag=0;
+    start st;
+    public MyWorld(int screenWidth, int screenHeight, int activeCount, double averageVelocity, int diffShapes, int waveTime, int shelfLevel, int clowns,String level,start st) {
         this.caretaker =  new Caretaker(this);
         width = screenWidth;
         height = screenHeight;
@@ -49,6 +53,8 @@ public class MyWorld implements World {
         this.waveTime = waveTime*1000;
         this.shelfLevel = shelfLevel;
         this.clowns = clowns;
+        this.level=level;
+        this.st=st;
         constant.add(new ImageObject(0 , 0, "Background.jpg", width, height));
         score = new Score();
         objectPool = new ObjectPool(deadTime, width, height, averageVelocity, diffShapes, shelfLevel, distBetwnRod);
@@ -99,6 +105,8 @@ public class MyWorld implements World {
     @Override
     public boolean refresh() {
         boolean timeout = System.currentTimeMillis() - startTime > MAX_TIME; // time end and game over
+        if(timeout)
+            return false;
         if(replayFlag) {
             replay();
             return true;
@@ -113,11 +121,11 @@ public class MyWorld implements World {
                 changeState(s);
             }
             for(Clown t: ((ClownWrapper)control.get(0)).getClowns()){
-                    if (t.checkIntersectAndAdd(m)) {
-                        activeCount++;
-                        toRemove.add(m);
-                        log.help().info("clown got "+s.getClass().getName());
-                    }
+                if (t.checkIntersectAndAdd(m)) {
+                    activeCount++;
+                    toRemove.add(m);
+                    log.help().info("clown got "+s.getClass().getName());
+                }
 
             }
         }
@@ -140,8 +148,49 @@ public class MyWorld implements World {
         for(GameObject m :toRemove){
             moving.remove(m);
         }
-        if(score.getScore()==10)
-            timeout=true;
+        if(timeout==true)
+            flag++;
+        if(level.equals("Easy")){
+            // player wins
+            if(score.getScore()==3){
+                Mes("Congratulations!! you passed this level");
+                log.help().info("player won the first level");
+                st.setLevel("Medium",false);
+                st.call();
+            }
+            //GameOver
+            else if(flag==1) {
+                log.help().info("player losses the first level");
+                st.setLevel("Easy",true);
+                st.call();
+            }
+        }
+        else if(level.equals("Medium")){
+            if(score.getScore()==5){
+                Mes("Congratulations!! you passed this level");
+                log.help().info("player won the second level");
+                st.setLevel("Hard",false);
+                st.call();
+            }
+            else if(flag==1) {
+                log.help().info("player losses the second level");
+                st.setLevel("Medium",true);
+                st.call();
+            }
+        }
+        else if(level.equals("Hard")){
+            if(score.getScore()==7){
+                Mes("Congratulations!!");
+                log.help().info("player won the third level");
+                Menu m=new Menu();
+                m.getLevel();
+            }
+            else if(flag==1) {
+                log.help().info("player losses the third level");
+                st.setLevel("Hard",true);
+                st.call();
+            }
+        }
         return !timeout;
     }
     public ObjectPool getObjectPool(){
@@ -183,11 +232,15 @@ public class MyWorld implements World {
         private final ClownWrapper cw;
         private final int scoreVal;
         private Memento(List<GameObject> constant, List<GameObject> moving, List<GameObject> control ){
-                for(GameObject o : moving){
-                    this.moving.add(((Cloneable)o).clone());
-                }
-                cw = (ClownWrapper) ((Cloneable)control.get(0)).clone();
-                scoreVal = score.getScore();
+            for(GameObject o : moving){
+                this.moving.add(((Cloneable)o).clone());
+            }
+            cw = (ClownWrapper) ((Cloneable)control.get(0)).clone();
+            scoreVal = score.getScore();
         }
+    }
+    public void Mes(String message){
+        JFrame frame=new JFrame();
+        JOptionPane.showMessageDialog(frame,message);
     }
 }
