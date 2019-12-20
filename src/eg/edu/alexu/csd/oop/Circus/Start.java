@@ -11,6 +11,8 @@ public class Start { ;
     Boolean first = true;
     MyWorld myWorld ;
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    Audio ad=new Audio();
+    String adPath="Circus.wav";
     public static GameEngine.GameController gameController;
 
     public void call(){
@@ -29,28 +31,36 @@ public class Start { ;
         btnLine.setBackground(new Color(255, 255, 255));
         btnLine.setForeground(new Color(0, 0, 0));
         btnLine.addActionListener(e -> {
-                    myWorld.replay();
+            ad.stop();
+            ad.playMusic(adPath);
+            myWorld.replay();
                 }
         );
         btnLine.setBounds(839, 69, 91, 31);
         menuBar.add( btnLine);
 
         if(first) {
+            ad.playMusic(adPath);
             first = false;
             gameController = GameEngine.start("Circus Of Plates", myWorld, menuBar);
         }
         else {
+            ad.stop();
+            ad.playMusic(adPath);
             gameController.changeWorld(myWorld);
         }
         newMenuItem.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
                 setLevel(level);
+                ad.stop();
+                ad.playMusic(adPath);
                 gameController.changeWorld(myWorld);
             }
         });
         pauseMenuItem.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
                 gameController.pause();
+                ad.stop();
                 log.help().info("the game is paused");
                 btnLine.setEnabled(false);
             }
@@ -58,6 +68,7 @@ public class Start { ;
         resumeMenuItem.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
                 gameController.resume();
+                ad.resume();
                 log.help().info("the game is resumed");
                 btnLine.setEnabled(true);
             }
@@ -72,6 +83,7 @@ public class Start { ;
         else if(level == 7)
             myWorld = new MyWorld((int) (0.75*screenSize.getWidth()), (int) (0.75*screenSize.getHeight()), 20, 10, 3, 4, 4, 3, 7, this);
         else {
+            ad.stop();
             main.frame.setVisible(true);
             return;
         }

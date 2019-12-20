@@ -2,351 +2,1323 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2019-12-20T11:14:06.105695300Z</date>
-  <millis>1576840446105</millis>
-  <nanos>695300</nanos>
+  <date>2019-12-20T15:04:01.244839700Z</date>
+  <millis>1576854241244</millis>
+  <nanos>839700</nanos>
   <sequence>0</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
   <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
   <method>getRandomShape</method>
-  <thread>18</thread>
-  <message>Pot is Loaded</message>
+  <thread>19</thread>
+  <message>Plate is Loaded</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:06.110681Z</date>
-  <millis>1576840446110</millis>
-  <nanos>681000</nanos>
+  <date>2019-12-20T15:04:01.253815500Z</date>
+  <millis>1576854241253</millis>
+  <nanos>815500</nanos>
   <sequence>1</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
   <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
   <method>getRandomShape</method>
-  <thread>18</thread>
-  <message>Pot is Loaded</message>
+  <thread>19</thread>
+  <message>DeepPlate is Loaded</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:06.111679300Z</date>
-  <millis>1576840446111</millis>
-  <nanos>679300</nanos>
+  <date>2019-12-20T15:04:01.253815500Z</date>
+  <millis>1576854241253</millis>
+  <nanos>815500</nanos>
   <sequence>2</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
   <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
   <method>getRandomShape</method>
-  <thread>18</thread>
-  <message>DeepPlate is Loaded</message>
+  <thread>19</thread>
+  <message>Plate is Loaded</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:06.112676500Z</date>
-  <millis>1576840446112</millis>
-  <nanos>676500</nanos>
+  <date>2019-12-20T15:04:01.254846500Z</date>
+  <millis>1576854241254</millis>
+  <nanos>846500</nanos>
   <sequence>3</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
   <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
   <method>getRandomShape</method>
-  <thread>18</thread>
+  <thread>19</thread>
   <message>DeepPlate is Loaded</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:06.112676500Z</date>
-  <millis>1576840446112</millis>
-  <nanos>676500</nanos>
+  <date>2019-12-20T15:04:01.254846500Z</date>
+  <millis>1576854241254</millis>
+  <nanos>846500</nanos>
   <sequence>4</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
   <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
   <method>getRandomShape</method>
-  <thread>18</thread>
+  <thread>19</thread>
   <message>DeepPlate is Loaded</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:08.392976300Z</date>
-  <millis>1576840448392</millis>
-  <nanos>976300</nanos>
+  <date>2019-12-20T15:04:04.967738900Z</date>
+  <millis>1576854244967</millis>
+  <nanos>738900</nanos>
   <sequence>5</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
   <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
   <method>refresh</method>
-  <thread>18</thread>
-  <message>DeepPlate is broken</message>
+  <thread>19</thread>
+  <message>Plate is broken</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:08.585900200Z</date>
-  <millis>1576840448585</millis>
-  <nanos>900200</nanos>
+  <date>2019-12-20T15:04:04.967738900Z</date>
+  <millis>1576854244967</millis>
+  <nanos>738900</nanos>
   <sequence>6</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
   <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
   <method>refresh</method>
-  <thread>18</thread>
-  <message>DeepPlate is broken</message>
+  <thread>19</thread>
+  <message>Plate is broken</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:08.629783200Z</date>
-  <millis>1576840448629</millis>
-  <nanos>783200</nanos>
+  <date>2019-12-20T15:04:05.010485100Z</date>
+  <millis>1576854245010</millis>
+  <nanos>485100</nanos>
   <sequence>7</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
   <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
   <method>refresh</method>
-  <thread>18</thread>
+  <thread>19</thread>
   <message>DeepPlate is broken</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:09.108983300Z</date>
-  <millis>1576840449108</millis>
-  <nanos>983300</nanos>
+  <date>2019-12-20T15:04:05.095132600Z</date>
+  <millis>1576854245095</millis>
+  <nanos>132600</nanos>
   <sequence>8</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
   <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
   <method>refresh</method>
-  <thread>18</thread>
-  <message>clown got Pot</message>
+  <thread>19</thread>
+  <message>DeepPlate is broken</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:09.589664900Z</date>
-  <millis>1576840449589</millis>
-  <nanos>664900</nanos>
+  <date>2019-12-20T15:04:05.637339Z</date>
+  <millis>1576854245637</millis>
+  <nanos>339000</nanos>
   <sequence>9</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
   <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
   <method>refresh</method>
-  <thread>18</thread>
-  <message>clown got Pot</message>
+  <thread>19</thread>
+  <message>DeepPlate is broken</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:13.111620500Z</date>
-  <millis>1576840453111</millis>
-  <nanos>620500</nanos>
+  <date>2019-12-20T15:04:08.256707Z</date>
+  <millis>1576854248256</millis>
+  <nanos>707000</nanos>
   <sequence>10</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
   <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
   <method>getRandomShape</method>
-  <thread>18</thread>
+  <thread>19</thread>
   <message>Plate is Loaded</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:13.111620500Z</date>
-  <millis>1576840453111</millis>
-  <nanos>620500</nanos>
+  <date>2019-12-20T15:04:08.256707Z</date>
+  <millis>1576854248256</millis>
+  <nanos>707000</nanos>
   <sequence>11</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
   <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
   <method>getRandomShape</method>
-  <thread>18</thread>
-  <message>Pot is Loaded</message>
+  <thread>19</thread>
+  <message>Plate is Loaded</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:13.111620500Z</date>
-  <millis>1576840453111</millis>
-  <nanos>620500</nanos>
+  <date>2019-12-20T15:04:08.257708Z</date>
+  <millis>1576854248257</millis>
+  <nanos>708000</nanos>
   <sequence>12</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
   <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
   <method>getRandomShape</method>
-  <thread>18</thread>
-  <message>Pot is Loaded</message>
+  <thread>19</thread>
+  <message>DeepPlate is Loaded</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:13.111620500Z</date>
-  <millis>1576840453111</millis>
-  <nanos>620500</nanos>
+  <date>2019-12-20T15:04:11.407270200Z</date>
+  <millis>1576854251407</millis>
+  <nanos>270200</nanos>
   <sequence>13</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
-  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
-  <method>getRandomShape</method>
-  <thread>18</thread>
-  <message>DeepPlate is Loaded</message>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:13.111620500Z</date>
-  <millis>1576840453111</millis>
-  <nanos>620500</nanos>
+  <date>2019-12-20T15:04:11.407270200Z</date>
+  <millis>1576854251407</millis>
+  <nanos>270200</nanos>
   <sequence>14</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
-  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
-  <method>getRandomShape</method>
-  <thread>18</thread>
-  <message>Plate is Loaded</message>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:13.111620500Z</date>
-  <millis>1576840453111</millis>
-  <nanos>620500</nanos>
+  <date>2019-12-20T15:04:11.407270200Z</date>
+  <millis>1576854251407</millis>
+  <nanos>270200</nanos>
   <sequence>15</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
-  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
-  <method>getRandomShape</method>
-  <thread>18</thread>
-  <message>Pot is Loaded</message>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:13.112617900Z</date>
-  <millis>1576840453112</millis>
-  <nanos>617900</nanos>
+  <date>2019-12-20T15:04:11.470521600Z</date>
+  <millis>1576854251470</millis>
+  <nanos>521600</nanos>
   <sequence>16</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
-  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
-  <method>getRandomShape</method>
-  <thread>18</thread>
-  <message>DeepPlate is Loaded</message>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got DeepPlate</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:13.112617900Z</date>
-  <millis>1576840453112</millis>
-  <nanos>617900</nanos>
+  <date>2019-12-20T15:04:11.888367400Z</date>
+  <millis>1576854251888</millis>
+  <nanos>367400</nanos>
   <sequence>17</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
-  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
-  <method>getRandomShape</method>
-  <thread>18</thread>
-  <message>Plate is Loaded</message>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:13.112617900Z</date>
-  <millis>1576840453112</millis>
-  <nanos>617900</nanos>
+  <date>2019-12-20T15:04:11.930455100Z</date>
+  <millis>1576854251930</millis>
+  <nanos>455100</nanos>
   <sequence>18</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
-  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
-  <method>getRandomShape</method>
-  <thread>18</thread>
-  <message>Plate is Loaded</message>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>DeepPlate is broken</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:13.112617900Z</date>
-  <millis>1576840453112</millis>
-  <nanos>617900</nanos>
+  <date>2019-12-20T15:04:11.930455100Z</date>
+  <millis>1576854251930</millis>
+  <nanos>455100</nanos>
   <sequence>19</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
-  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
-  <method>getRandomShape</method>
-  <thread>18</thread>
-  <message>Plate is Loaded</message>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>DeepPlate is broken</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:13.112617900Z</date>
-  <millis>1576840453112</millis>
-  <nanos>617900</nanos>
+  <date>2019-12-20T15:04:12.036294600Z</date>
+  <millis>1576854252036</millis>
+  <nanos>294600</nanos>
   <sequence>20</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
-  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
-  <method>getRandomShape</method>
-  <thread>18</thread>
-  <message>Plate is Loaded</message>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got DeepPlate</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:13.112617900Z</date>
-  <millis>1576840453112</millis>
-  <nanos>617900</nanos>
+  <date>2019-12-20T15:04:15.854978800Z</date>
+  <millis>1576854255854</millis>
+  <nanos>978800</nanos>
   <sequence>21</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
   <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
   <method>getRandomShape</method>
-  <thread>18</thread>
-  <message>Pot is Loaded</message>
+  <thread>19</thread>
+  <message>DeepPlate is Loaded</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:14.633134500Z</date>
-  <millis>1576840454633</millis>
-  <nanos>134500</nanos>
+  <date>2019-12-20T15:04:15.855976400Z</date>
+  <millis>1576854255855</millis>
+  <nanos>976400</nanos>
   <sequence>22</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
-  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
-  <method>refresh</method>
-  <thread>18</thread>
-  <message>clown got Plate</message>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>Plate is Loaded</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:14.872520500Z</date>
-  <millis>1576840454872</millis>
-  <nanos>520500</nanos>
+  <date>2019-12-20T15:04:15.855976400Z</date>
+  <millis>1576854255855</millis>
+  <nanos>976400</nanos>
   <sequence>23</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
-  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
-  <method>refresh</method>
-  <thread>18</thread>
-  <message>Plate is broken</message>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>Plate is Loaded</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:14.957324900Z</date>
-  <millis>1576840454957</millis>
-  <nanos>324900</nanos>
+  <date>2019-12-20T15:04:15.855976400Z</date>
+  <millis>1576854255855</millis>
+  <nanos>976400</nanos>
   <sequence>24</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
-  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
-  <method>refresh</method>
-  <thread>18</thread>
-  <message>clown got Plate</message>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>DeepPlate is Loaded</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:15.044449600Z</date>
-  <millis>1576840455044</millis>
-  <nanos>449600</nanos>
+  <date>2019-12-20T15:04:15.855976400Z</date>
+  <millis>1576854255855</millis>
+  <nanos>976400</nanos>
   <sequence>25</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
-  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
-  <method>refresh</method>
-  <thread>18</thread>
-  <message>Pot is broken</message>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>Plate is Loaded</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:15.044449600Z</date>
-  <millis>1576840455044</millis>
-  <nanos>449600</nanos>
+  <date>2019-12-20T15:04:15.855976400Z</date>
+  <millis>1576854255855</millis>
+  <nanos>976400</nanos>
   <sequence>26</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
-  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
-  <method>refresh</method>
-  <thread>18</thread>
-  <message>Pot is broken</message>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>DeepPlate is Loaded</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:15.176097400Z</date>
-  <millis>1576840455176</millis>
-  <nanos>97400</nanos>
+  <date>2019-12-20T15:04:15.855976400Z</date>
+  <millis>1576854255855</millis>
+  <nanos>976400</nanos>
   <sequence>27</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
-  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
-  <method>refresh</method>
-  <thread>18</thread>
-  <message>Pot is broken</message>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>Plate is Loaded</message>
 </record>
 <record>
-  <date>2019-12-20T11:14:15.263745800Z</date>
-  <millis>1576840455263</millis>
-  <nanos>745800</nanos>
+  <date>2019-12-20T15:04:18.990860300Z</date>
+  <millis>1576854258990</millis>
+  <nanos>860300</nanos>
   <sequence>28</sequence>
   <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
   <level>INFO</level>
   <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
   <method>refresh</method>
-  <thread>18</thread>
-  <message>clown got Pot</message>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:19.033632600Z</date>
+  <millis>1576854259033</millis>
+  <nanos>632600</nanos>
+  <sequence>29</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>DeepPlate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:19.138702500Z</date>
+  <millis>1576854259138</millis>
+  <nanos>702500</nanos>
+  <sequence>30</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got DeepPlate</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:19.393214500Z</date>
+  <millis>1576854259393</millis>
+  <nanos>214500</nanos>
+  <sequence>31</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:19.478750700Z</date>
+  <millis>1576854259478</millis>
+  <nanos>750700</nanos>
+  <sequence>32</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:19.478750700Z</date>
+  <millis>1576854259478</millis>
+  <nanos>750700</nanos>
+  <sequence>33</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:19.522112300Z</date>
+  <millis>1576854259522</millis>
+  <nanos>112300</nanos>
+  <sequence>34</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>DeepPlate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:21.884248500Z</date>
+  <millis>1576854261884</millis>
+  <nanos>248500</nanos>
+  <sequence>35</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Start$2</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>the game is paused</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:24.517943700Z</date>
+  <millis>1576854264517</millis>
+  <nanos>943700</nanos>
+  <sequence>36</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Start$3</class>
+  <method>actionPerformed</method>
+  <thread>19</thread>
+  <message>the game is resumed</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:27.293366500Z</date>
+  <millis>1576854267293</millis>
+  <nanos>366500</nanos>
+  <sequence>37</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got DeepPlate</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:27.686609700Z</date>
+  <millis>1576854267686</millis>
+  <nanos>609700</nanos>
+  <sequence>38</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>similarTo</method>
+  <thread>19</thread>
+  <message>shapes have the same color</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:27.687607100Z</date>
+  <millis>1576854267687</millis>
+  <nanos>607100</nanos>
+  <sequence>39</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>similarTo</method>
+  <thread>19</thread>
+  <message>shapes have different colors</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:27.688641700Z</date>
+  <millis>1576854267688</millis>
+  <nanos>641700</nanos>
+  <sequence>40</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got Plate</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:27.688641700Z</date>
+  <millis>1576854267688</millis>
+  <nanos>641700</nanos>
+  <sequence>41</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:27.688641700Z</date>
+  <millis>1576854267688</millis>
+  <nanos>641700</nanos>
+  <sequence>42</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:27.725149100Z</date>
+  <millis>1576854267725</millis>
+  <nanos>149100</nanos>
+  <sequence>43</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>DeepPlate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:28.079188800Z</date>
+  <millis>1576854268079</millis>
+  <nanos>188800</nanos>
+  <sequence>44</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:34.845056700Z</date>
+  <millis>1576854274845</millis>
+  <nanos>56700</nanos>
+  <sequence>45</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got Plate</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:34.845056700Z</date>
+  <millis>1576854274845</millis>
+  <nanos>56700</nanos>
+  <sequence>46</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got DeepPlate</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:35.095723400Z</date>
+  <millis>1576854275095</millis>
+  <nanos>723400</nanos>
+  <sequence>47</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:38.553402400Z</date>
+  <millis>1576854278553</millis>
+  <nanos>402400</nanos>
+  <sequence>48</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>Plate is Loaded</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:42.301349300Z</date>
+  <millis>1576854282301</millis>
+  <nanos>349300</nanos>
+  <sequence>49</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>similarTo</method>
+  <thread>19</thread>
+  <message>shapes have different colors</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:42.301349300Z</date>
+  <millis>1576854282301</millis>
+  <nanos>349300</nanos>
+  <sequence>50</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got Plate</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:42.302282800Z</date>
+  <millis>1576854282302</millis>
+  <nanos>282800</nanos>
+  <sequence>51</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>similarTo</method>
+  <thread>19</thread>
+  <message>shapes have the same color</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:42.302282800Z</date>
+  <millis>1576854282302</millis>
+  <nanos>282800</nanos>
+  <sequence>52</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>similarTo</method>
+  <thread>19</thread>
+  <message>shapes have different colors</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:42.302282800Z</date>
+  <millis>1576854282302</millis>
+  <nanos>282800</nanos>
+  <sequence>53</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got Plate</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:45.569307500Z</date>
+  <millis>1576854285569</millis>
+  <nanos>307500</nanos>
+  <sequence>54</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>Plate is Loaded</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:45.569307500Z</date>
+  <millis>1576854285569</millis>
+  <nanos>307500</nanos>
+  <sequence>55</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>DeepPlate is Loaded</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:45.569307500Z</date>
+  <millis>1576854285569</millis>
+  <nanos>307500</nanos>
+  <sequence>56</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>DeepPlate is Loaded</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:45.570013800Z</date>
+  <millis>1576854285570</millis>
+  <nanos>13800</nanos>
+  <sequence>57</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>Plate is Loaded</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:45.570013800Z</date>
+  <millis>1576854285570</millis>
+  <nanos>13800</nanos>
+  <sequence>58</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>Plate is Loaded</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:45.570013800Z</date>
+  <millis>1576854285570</millis>
+  <nanos>13800</nanos>
+  <sequence>59</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>DeepPlate is Loaded</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:45.570013800Z</date>
+  <millis>1576854285570</millis>
+  <nanos>13800</nanos>
+  <sequence>60</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>Plate is Loaded</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:45.570013800Z</date>
+  <millis>1576854285570</millis>
+  <nanos>13800</nanos>
+  <sequence>61</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>DeepPlate is Loaded</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:48.257227800Z</date>
+  <millis>1576854288257</millis>
+  <nanos>227800</nanos>
+  <sequence>62</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>similarTo</method>
+  <thread>19</thread>
+  <message>shapes have the same color</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:48.257227800Z</date>
+  <millis>1576854288257</millis>
+  <nanos>227800</nanos>
+  <sequence>63</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>similarTo</method>
+  <thread>19</thread>
+  <message>shapes have the same color</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:48.258202400Z</date>
+  <millis>1576854288258</millis>
+  <nanos>202400</nanos>
+  <sequence>64</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Utils.Score</class>
+  <method>update</method>
+  <thread>19</thread>
+  <message>the score of the player is 1</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:48.258202400Z</date>
+  <millis>1576854288258</millis>
+  <nanos>202400</nanos>
+  <sequence>65</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got Plate</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:48.767050600Z</date>
+  <millis>1576854288767</millis>
+  <nanos>50600</nanos>
+  <sequence>66</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>DeepPlate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:49.124857700Z</date>
+  <millis>1576854289124</millis>
+  <nanos>857700</nanos>
+  <sequence>67</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:49.124857700Z</date>
+  <millis>1576854289124</millis>
+  <nanos>857700</nanos>
+  <sequence>68</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:49.124857700Z</date>
+  <millis>1576854289124</millis>
+  <nanos>857700</nanos>
+  <sequence>69</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:49.166652300Z</date>
+  <millis>1576854289166</millis>
+  <nanos>652300</nanos>
+  <sequence>70</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>DeepPlate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:49.792708100Z</date>
+  <millis>1576854289792</millis>
+  <nanos>708100</nanos>
+  <sequence>71</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>DeepPlate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:49.792708100Z</date>
+  <millis>1576854289792</millis>
+  <nanos>708100</nanos>
+  <sequence>72</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>DeepPlate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:55.312191900Z</date>
+  <millis>1576854295312</millis>
+  <nanos>191900</nanos>
+  <sequence>73</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>similarTo</method>
+  <thread>19</thread>
+  <message>shapes have different colors</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:55.312942300Z</date>
+  <millis>1576854295312</millis>
+  <nanos>942300</nanos>
+  <sequence>74</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got Plate</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:55.312942300Z</date>
+  <millis>1576854295312</millis>
+  <nanos>942300</nanos>
+  <sequence>75</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>similarTo</method>
+  <thread>19</thread>
+  <message>shapes have different colors</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:55.312942300Z</date>
+  <millis>1576854295312</millis>
+  <nanos>942300</nanos>
+  <sequence>76</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got Plate</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:55.749409900Z</date>
+  <millis>1576854295749</millis>
+  <nanos>409900</nanos>
+  <sequence>77</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>similarTo</method>
+  <thread>19</thread>
+  <message>shapes have different colors</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:55.749409900Z</date>
+  <millis>1576854295749</millis>
+  <nanos>409900</nanos>
+  <sequence>78</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got Plate</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:56.166062300Z</date>
+  <millis>1576854296166</millis>
+  <nanos>62300</nanos>
+  <sequence>79</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>DeepPlate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:56.752435900Z</date>
+  <millis>1576854296752</millis>
+  <nanos>435900</nanos>
+  <sequence>80</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:56.793208800Z</date>
+  <millis>1576854296793</millis>
+  <nanos>208800</nanos>
+  <sequence>81</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>DeepPlate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:59.612736100Z</date>
+  <millis>1576854299612</millis>
+  <nanos>736100</nanos>
+  <sequence>82</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>Plate is Loaded</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:59.612736100Z</date>
+  <millis>1576854299612</millis>
+  <nanos>736100</nanos>
+  <sequence>83</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>Plate is Loaded</message>
+</record>
+<record>
+  <date>2019-12-20T15:04:59.614396200Z</date>
+  <millis>1576854299614</millis>
+  <nanos>396200</nanos>
+  <sequence>84</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>getRandomShape</method>
+  <thread>19</thread>
+  <message>Plate is Loaded</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:02.314879Z</date>
+  <millis>1576854302314</millis>
+  <nanos>879000</nanos>
+  <sequence>85</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>similarTo</method>
+  <thread>19</thread>
+  <message>shapes have different colors</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:02.315696300Z</date>
+  <millis>1576854302315</millis>
+  <nanos>696300</nanos>
+  <sequence>86</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got DeepPlate</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:03.193265100Z</date>
+  <millis>1576854303193</millis>
+  <nanos>265100</nanos>
+  <sequence>87</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:03.193265100Z</date>
+  <millis>1576854303193</millis>
+  <nanos>265100</nanos>
+  <sequence>88</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:03.193265100Z</date>
+  <millis>1576854303193</millis>
+  <nanos>265100</nanos>
+  <sequence>89</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:03.822240200Z</date>
+  <millis>1576854303822</millis>
+  <nanos>240200</nanos>
+  <sequence>90</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:03.863687200Z</date>
+  <millis>1576854303863</millis>
+  <nanos>687200</nanos>
+  <sequence>91</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>DeepPlate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:03.863687200Z</date>
+  <millis>1576854303863</millis>
+  <nanos>687200</nanos>
+  <sequence>92</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>DeepPlate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:09.679961Z</date>
+  <millis>1576854309679</millis>
+  <nanos>961000</nanos>
+  <sequence>93</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>similarTo</method>
+  <thread>19</thread>
+  <message>shapes have the same color</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:09.680671200Z</date>
+  <millis>1576854309680</millis>
+  <nanos>671200</nanos>
+  <sequence>94</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>similarTo</method>
+  <thread>19</thread>
+  <message>shapes have the same color</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:09.680671200Z</date>
+  <millis>1576854309680</millis>
+  <nanos>671200</nanos>
+  <sequence>95</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Utils.Score</class>
+  <method>update</method>
+  <thread>19</thread>
+  <message>the score of the player is 2</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:09.680671200Z</date>
+  <millis>1576854309680</millis>
+  <nanos>671200</nanos>
+  <sequence>96</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got Plate</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:09.783511900Z</date>
+  <millis>1576854309783</millis>
+  <nanos>511900</nanos>
+  <sequence>97</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:10.259343800Z</date>
+  <millis>1576854310259</millis>
+  <nanos>343800</nanos>
+  <sequence>98</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:10.300319200Z</date>
+  <millis>1576854310300</millis>
+  <nanos>319200</nanos>
+  <sequence>99</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>DeepPlate is broken</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:16.402215900Z</date>
+  <millis>1576854316402</millis>
+  <nanos>215900</nanos>
+  <sequence>100</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got Plate</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:16.630233600Z</date>
+  <millis>1576854316630</millis>
+  <nanos>233600</nanos>
+  <sequence>101</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>similarTo</method>
+  <thread>19</thread>
+  <message>shapes have different colors</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:16.630233600Z</date>
+  <millis>1576854316630</millis>
+  <nanos>233600</nanos>
+  <sequence>102</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got Plate</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:16.631240100Z</date>
+  <millis>1576854316631</millis>
+  <nanos>240100</nanos>
+  <sequence>103</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>similarTo</method>
+  <thread>19</thread>
+  <message>shapes have different colors</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:16.631240100Z</date>
+  <millis>1576854316631</millis>
+  <nanos>240100</nanos>
+  <sequence>104</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got Plate</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:16.862819400Z</date>
+  <millis>1576854316862</millis>
+  <nanos>819400</nanos>
+  <sequence>105</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>similarTo</method>
+  <thread>19</thread>
+  <message>shapes have different colors</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:16.862819400Z</date>
+  <millis>1576854316862</millis>
+  <nanos>819400</nanos>
+  <sequence>106</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got DeepPlate</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:17.216066100Z</date>
+  <millis>1576854317216</millis>
+  <nanos>66100</nanos>
+  <sequence>107</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.Factories.ShapeFactory</class>
+  <method>similarTo</method>
+  <thread>19</thread>
+  <message>shapes have different colors</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:17.216873500Z</date>
+  <millis>1576854317216</millis>
+  <nanos>873500</nanos>
+  <sequence>108</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>clown got DeepPlate</message>
+</record>
+<record>
+  <date>2019-12-20T15:05:17.278903600Z</date>
+  <millis>1576854317278</millis>
+  <nanos>903600</nanos>
+  <sequence>109</sequence>
+  <logger>eg.edu.alexu.csd.oop.Circus.logging</logger>
+  <level>INFO</level>
+  <class>eg.edu.alexu.csd.oop.Circus.MyWorld</class>
+  <method>refresh</method>
+  <thread>19</thread>
+  <message>Plate is broken</message>
 </record>
 </log>
