@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class main {
@@ -25,9 +26,12 @@ public class main {
         JLabel lblNewLabel = new JLabel("");
         lblNewLabel.setBounds(0, 0, 300, 300);
         lblNewLabel.setForeground(Color.BLACK);
-        Image img=new ImageIcon("Background.jpg").getImage();
         frame.getContentPane().setLayout(null);
-        lblNewLabel.setIcon(new ImageIcon(img));
+        try {
+            lblNewLabel.setIcon(new ImageIcon(ImageIO.read(main.class.getClassLoader().getResourceAsStream("menu3.jpg"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         frame.getContentPane().add(lblNewLabel);
         JComboBox comboBox = new JComboBox();
         comboBox.setBounds(10, 85, 126, 27);
