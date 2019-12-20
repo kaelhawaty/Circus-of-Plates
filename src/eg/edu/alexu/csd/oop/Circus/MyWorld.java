@@ -11,7 +11,6 @@ import eg.edu.alexu.csd.oop.Circus.Utils.ObjectPool;
 import eg.edu.alexu.csd.oop.Circus.Utils.Score;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
-
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -41,11 +40,9 @@ public class MyWorld implements World {
     private boolean replayFlag = false;
     private final long deadTime = 10*1000;
     private Caretaker caretaker;
+    private Start start;
     logging log=new logging();
-    private String level;
-    private int flag=0;
-    start st;
-    public MyWorld(int screenWidth, int screenHeight, int activeCount, double averageVelocity, int diffShapes, int waveTime, int shelfLevel, int clowns,String level,start st) {
+    public MyWorld(int screenWidth, int screenHeight, int activeCount, double averageVelocity, int diffShapes, int waveTime, int shelfLevel, int clowns, int maxScore, Start start) {
         this.caretaker =  new Caretaker(this);
         width = screenWidth;
         height = screenHeight;
@@ -53,10 +50,9 @@ public class MyWorld implements World {
         this.waveTime = waveTime*1000;
         this.shelfLevel = shelfLevel;
         this.clowns = clowns;
-        this.level=level;
-        this.st=st;
+        this.start = start;
         constant.add(new ImageObject(0 , 0, "Background.jpg", width, height));
-        score = new Score();
+        score = new Score(maxScore);
         objectPool = new ObjectPool(deadTime, width, height, averageVelocity, diffShapes, shelfLevel, distBetwnRod);
         initializeShelves();
         initializeClowns();
@@ -105,8 +101,13 @@ public class MyWorld implements World {
     @Override
     public boolean refresh() {
         boolean timeout = System.currentTimeMillis() - startTime > MAX_TIME; // time end and game over
-        if(timeout)
+        if (score.getStatues()){
+            start.setLevel(score.getScore()+2);
+        }
+        if(timeout){
+            start.setLevel(10);
             return false;
+        }
         if(replayFlag) {
             replay();
             return true;
@@ -147,49 +148,6 @@ public class MyWorld implements World {
         }
         for(GameObject m :toRemove){
             moving.remove(m);
-        }
-        if(timeout==true)
-            flag++;
-        if(level.equals("Easy")){
-            // player wins
-            if(score.getScore()==3){
-                Mes("Congratulations!! you passed this level");
-                log.help().info("player won the first level");
-                st.setLevel("Medium",false);
-                st.call();
-            }
-            //GameOver
-            else if(flag==1) {
-                log.help().info("player losses the first level");
-                st.setLevel("Easy",true);
-                st.call();
-            }
-        }
-        else if(level.equals("Medium")){
-            if(score.getScore()==5){
-                Mes("Congratulations!! you passed this level");
-                log.help().info("player won the second level");
-                st.setLevel("Hard",false);
-                st.call();
-            }
-            else if(flag==1) {
-                log.help().info("player losses the second level");
-                st.setLevel("Medium",true);
-                st.call();
-            }
-        }
-        else if(level.equals("Hard")){
-            if(score.getScore()==7){
-                Mes("Congratulations!!");
-                log.help().info("player won the third level");
-                Menu m=new Menu();
-                m.getLevel();
-            }
-            else if(flag==1) {
-                log.help().info("player losses the third level");
-                st.setLevel("Hard",true);
-                st.call();
-            }
         }
         return !timeout;
     }
@@ -238,9 +196,5 @@ public class MyWorld implements World {
             cw = (ClownWrapper) ((Cloneable)control.get(0)).clone();
             scoreVal = score.getScore();
         }
-    }
-    public void Mes(String message){
-        JFrame frame=new JFrame();
-        JOptionPane.showMessageDialog(frame,message);
     }
 }

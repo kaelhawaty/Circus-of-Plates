@@ -81,7 +81,7 @@ public class ShapesLoader {
             while (entry != null) {
                 if (entry.getName().matches(className + "[0-9]*\\.png")) {
                     BufferedImage bufferedImage = ImageIO.read(loader.getResourceAsStream(entry.getName()));
-                    mp.put(entry.getName(), createResizedCopy(bufferedImage, (int) Math.round((900.0 / screenSize.getWidth()) * bufferedImage.getWidth()), (int) Math.round((500.0 / screenSize.getHeight()) * bufferedImage.getHeight()), false));
+                    mp.put(entry.getName(), createResizedCopy(bufferedImage, (int) Math.round((1200 / screenSize.getWidth()) * bufferedImage.getWidth()), (int) Math.round((650 / screenSize.getHeight()) * bufferedImage.getHeight()), false));
                 }
                 entry = jis.getNextJarEntry();
             }

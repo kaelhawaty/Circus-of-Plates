@@ -6,9 +6,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class start {
-    String level="";
-    Boolean first;
+public class Start { ;
+    int level;
+    Boolean first = true;
     MyWorld myWorld ;
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static GameEngine.GameController gameController;
@@ -36,14 +36,15 @@ public class start {
         menuBar.add( btnLine);
 
         if(first) {
-            gameController = GameEngine.start("Very Simple Game in 99 Line of Code", myWorld, menuBar);
+            first = false;
+            gameController = GameEngine.start("Circus Of Plates", myWorld, menuBar);
         }
         else {
             gameController.changeWorld(myWorld);
         }
         newMenuItem.addActionListener(new ActionListener() {
             @Override public void actionPerformed(ActionEvent e) {
-                setLevel(level,first);
+                setLevel(level);
                 gameController.changeWorld(myWorld);
             }
         });
@@ -62,14 +63,18 @@ public class start {
             }
         });
     }
-    public void setLevel(String level,Boolean first){
-        this.level=level;
-        this.first=first;
-        if(level.equals("Easy"))
-            myWorld= new MyWorld((int) (0.75*screenSize.getWidth()), (int) (0.75*screenSize.getHeight()), 8, 4, 2, 7, 1, 1,level,this);
-        else if(level.equals("Medium"))
-            myWorld = new MyWorld((int) (0.75*screenSize.getWidth()), (int) (0.75*screenSize.getHeight()), 15, 7, 3, 5, 3, 2,level,this);
-        else
-            myWorld = new MyWorld((int) (0.75*screenSize.getWidth()), (int) (0.75*screenSize.getHeight()), 20, 10, 3, 4, 4, 3,level,this);
+    public void setLevel(int level){
+        this.level = level;
+        if(level == 3)
+            myWorld= new MyWorld((int) (0.75*screenSize.getWidth()), (int) (0.75*screenSize.getHeight()), 8, 4, 2, 7, 1, 1, 3, this);
+        else if(level == 5)
+            myWorld = new MyWorld((int) (0.75*screenSize.getWidth()), (int) (0.75*screenSize.getHeight()), 15, 7, 3, 5, 3, 2, 5, this);
+        else if(level == 7)
+            myWorld = new MyWorld((int) (0.75*screenSize.getWidth()), (int) (0.75*screenSize.getHeight()), 20, 10, 3, 4, 4, 3, 7, this);
+        else {
+            main.frame.setVisible(true);
+            return;
+        }
+        call();
     }
 }
