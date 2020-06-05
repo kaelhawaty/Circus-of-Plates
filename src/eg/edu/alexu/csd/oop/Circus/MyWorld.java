@@ -167,7 +167,7 @@ public class MyWorld implements World {
     }
 
     public Memento save(){
-        return new Memento(constant, moving, control);
+        return new Memento();
     }
     public void restore(Memento m){
         constant = constant.subList(0, 1+2*shelfLevel);
@@ -189,8 +189,8 @@ public class MyWorld implements World {
         private final List<GameObject> moving = new LinkedList<GameObject>();
         private final ClownWrapper cw;
         private final int scoreVal;
-        private Memento(List<GameObject> constant, List<GameObject> moving, List<GameObject> control ){
-            for(GameObject o : moving){
+        private Memento(){
+            for(GameObject o : MyWorld.this.moving){
                 this.moving.add(((Cloneable)o).clone());
             }
             cw = (ClownWrapper) ((Cloneable)control.get(0)).clone();
